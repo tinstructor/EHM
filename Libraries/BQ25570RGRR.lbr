@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE eagle SYSTEM "eagle.dtd">
+<eagle version="9.2.2">
+<drawing>
+<settings>
+<setting alwaysvectorfont="no"/>
+<setting keepoldvectorfont="yes"/>
+<setting verticaltext="up"/>
+</settings>
+<grid distance="50" unitdist="mil" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
+<layers>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
+<layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+</layers>
+<library>
+<packages>
+<package name="QFN50P350X350X100-21N">
+<rectangle x1="-0.97235625" y1="0.1503625" x2="-0.15" y2="0.97" layer="31"/>
+<rectangle x1="0.1500375" y1="-0.970246875" x2="0.97" y2="-0.15" layer="31" rot="R180"/>
+<rectangle x1="0.1502875" y1="0.1502875" x2="0.97" y2="0.97" layer="31" rot="R270"/>
+<rectangle x1="-0.97086875" y1="-0.97086875" x2="-0.15" y2="-0.15" layer="31" rot="R90"/>
+<wire x1="-2.45" y1="2.45" x2="2.45" y2="2.45" width="0.05" layer="39"/>
+<wire x1="2.45" y1="2.45" x2="2.45" y2="-2.45" width="0.05" layer="39"/>
+<wire x1="2.45" y1="-2.45" x2="-2.45" y2="-2.45" width="0.05" layer="39"/>
+<wire x1="-2.45" y1="-2.45" x2="-2.45" y2="2.45" width="0.05" layer="39"/>
+<wire x1="-1.75" y1="1.4" x2="-1.75" y2="1.45" width="0.2" layer="21"/>
+<wire x1="-1.75" y1="1.45" x2="-1.45" y2="1.75" width="0.2" layer="21"/>
+<wire x1="-1.45" y1="1.75" x2="-1.4" y2="1.75" width="0.2" layer="21"/>
+<wire x1="1.4" y1="1.75" x2="1.75" y2="1.75" width="0.2" layer="21"/>
+<wire x1="1.75" y1="1.75" x2="1.75" y2="1.4" width="0.2" layer="21"/>
+<wire x1="1.75" y1="-1.4" x2="1.75" y2="-1.75" width="0.2" layer="21"/>
+<wire x1="1.75" y1="-1.75" x2="1.4" y2="-1.75" width="0.2" layer="21"/>
+<wire x1="-1.4" y1="-1.75" x2="-1.75" y2="-1.75" width="0.2" layer="21"/>
+<wire x1="-1.75" y1="-1.75" x2="-1.75" y2="-1.4" width="0.2" layer="21"/>
+<text x="-2.307740625" y="2.307740625" size="1.27428125" layer="25">&gt;NAME</text>
+<text x="-2.30465" y="-3.607290625" size="1.27256875" layer="27">&gt;VALUE</text>
+<smd name="1" x="-1.75" y="1" dx="0.85" dy="0.3" layer="1" roundness="100"/>
+<smd name="2" x="-1.75" y="0.5" dx="0.85" dy="0.3" layer="1" roundness="100"/>
+<smd name="3" x="-1.75" y="0" dx="0.85" dy="0.3" layer="1" roundness="100"/>
+<smd name="4" x="-1.75" y="-0.5" dx="0.85" dy="0.3" layer="1" roundness="100"/>
+<smd name="5" x="-1.75" y="-1" dx="0.85" dy="0.3" layer="1" roundness="100"/>
+<smd name="6" x="-1" y="-1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R90"/>
+<smd name="7" x="-0.5" y="-1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R90"/>
+<smd name="8" x="0" y="-1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R90"/>
+<smd name="9" x="0.5" y="-1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R90"/>
+<smd name="10" x="1" y="-1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R90"/>
+<smd name="11" x="1.75" y="-1" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R180"/>
+<smd name="12" x="1.75" y="-0.5" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R180"/>
+<smd name="13" x="1.75" y="0" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R180"/>
+<smd name="14" x="1.75" y="0.5" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R180"/>
+<smd name="15" x="1.75" y="1" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R180"/>
+<smd name="16" x="1" y="1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R270"/>
+<smd name="17" x="0.5" y="1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R270"/>
+<smd name="18" x="0" y="1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R270"/>
+<smd name="19" x="-0.5" y="1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R270"/>
+<smd name="20" x="-1" y="1.75" dx="0.85" dy="0.3" layer="1" roundness="100" rot="R270"/>
+<smd name="21" x="0" y="0" dx="2.15" dy="2.15" layer="1" cream="no"/>
+<pad name="22" x="-0.5" y="0.5" drill="0.3" diameter="0.45"/>
+<pad name="23" x="-0.5" y="-0.5" drill="0.3" diameter="0.45"/>
+<pad name="24" x="0.5" y="-0.5" drill="0.3" diameter="0.45"/>
+<pad name="25" x="0.5" y="0.5" drill="0.3" diameter="0.45"/>
+</package>
+</packages>
+<symbols>
+<symbol name="BQ25570RGRR">
+<wire x1="-15.24" y1="17.78" x2="15.24" y2="17.78" width="0.254" layer="94"/>
+<wire x1="15.24" y1="17.78" x2="15.24" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-17.78" x2="-15.24" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-17.78" x2="-15.24" y2="17.78" width="0.254" layer="94"/>
+<text x="-15.2746" y="17.8203" size="1.27288125" layer="95">&gt;NAME</text>
+<text x="-15.2783" y="-20.371" size="1.273190625" layer="96">&gt;VALUE</text>
+<pin name="!EN" x="-20.32" y="15.24" length="middle" direction="in"/>
+<pin name="LBOOST" x="-20.32" y="12.7" length="middle" direction="in"/>
+<pin name="LBUCK" x="-20.32" y="-12.7" length="middle"/>
+<pin name="OK_HYST" x="-20.32" y="10.16" length="middle" direction="in"/>
+<pin name="OK_PROG" x="-20.32" y="7.62" length="middle" direction="in"/>
+<pin name="VBAT" x="-20.32" y="-10.16" length="middle"/>
+<pin name="VBAT_OK" x="20.32" y="10.16" length="middle" direction="out" rot="R180"/>
+<pin name="VBAT_OV" x="-20.32" y="5.08" length="middle" direction="in"/>
+<pin name="VIN_DC" x="20.32" y="15.24" length="middle" direction="pwr" rot="R180"/>
+<pin name="VOC_SAMP" x="-20.32" y="2.54" length="middle" direction="in"/>
+<pin name="VOUT" x="20.32" y="2.54" length="middle" direction="out" rot="R180"/>
+<pin name="VOUT_EN" x="-20.32" y="0" length="middle" direction="in"/>
+<pin name="VOUT_SET" x="-20.32" y="-2.54" length="middle" direction="in"/>
+<pin name="VREF_SAMP" x="-20.32" y="-5.08" length="middle" direction="in"/>
+<pin name="VRDIV" x="20.32" y="7.62" length="middle" direction="out" rot="R180"/>
+<pin name="VSS@1" x="20.32" y="-12.7" length="middle" direction="pwr" rot="R180"/>
+<pin name="VSS@2" x="20.32" y="-15.24" length="middle" direction="pwr" rot="R180"/>
+<pin name="VSTOR" x="20.32" y="5.08" length="middle" direction="out" rot="R180"/>
+<pin name="EP@1" x="20.32" y="0" length="middle" direction="pwr" rot="R180"/>
+<pin name="EP@2" x="20.32" y="-2.54" length="middle" direction="pwr" rot="R180"/>
+<pin name="EP@3" x="20.32" y="-5.08" length="middle" direction="pwr" rot="R180"/>
+<pin name="EP@4" x="20.32" y="-7.62" length="middle" direction="pwr" rot="R180"/>
+<pin name="EP@5" x="20.32" y="-10.16" length="middle" direction="pwr" rot="R180"/>
+<pin name="NC1" x="20.32" y="12.7" length="middle" direction="nc" rot="R180"/>
+<pin name="NC2" x="-20.32" y="-7.62" length="middle" direction="nc"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BQ25570RGRR" prefix="U">
+<description>Ultra Low Power Harvester Power Management IC with Boost Charger, and Nanopower Buck Converter 20-VQFN</description>
+<gates>
+<gate name="G$1" symbol="BQ25570RGRR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="QFN50P350X350X100-21N">
+<connects>
+<connect gate="G$1" pin="!EN" pad="5"/>
+<connect gate="G$1" pin="EP@1" pad="21"/>
+<connect gate="G$1" pin="EP@2" pad="22"/>
+<connect gate="G$1" pin="EP@3" pad="23"/>
+<connect gate="G$1" pin="EP@4" pad="24"/>
+<connect gate="G$1" pin="EP@5" pad="25"/>
+<connect gate="G$1" pin="LBOOST" pad="20"/>
+<connect gate="G$1" pin="LBUCK" pad="16"/>
+<connect gate="G$1" pin="NC1" pad="9"/>
+<connect gate="G$1" pin="NC2" pad="17"/>
+<connect gate="G$1" pin="OK_HYST" pad="10"/>
+<connect gate="G$1" pin="OK_PROG" pad="11"/>
+<connect gate="G$1" pin="VBAT" pad="18"/>
+<connect gate="G$1" pin="VBAT_OK" pad="13"/>
+<connect gate="G$1" pin="VBAT_OV" pad="7"/>
+<connect gate="G$1" pin="VIN_DC" pad="2"/>
+<connect gate="G$1" pin="VOC_SAMP" pad="3"/>
+<connect gate="G$1" pin="VOUT" pad="14"/>
+<connect gate="G$1" pin="VOUT_EN" pad="6"/>
+<connect gate="G$1" pin="VOUT_SET" pad="12"/>
+<connect gate="G$1" pin="VRDIV" pad="8"/>
+<connect gate="G$1" pin="VREF_SAMP" pad="4"/>
+<connect gate="G$1" pin="VSS@1" pad="1"/>
+<connect gate="G$1" pin="VSS@2" pad="15"/>
+<connect gate="G$1" pin="VSTOR" pad="19"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Unavailable"/>
+<attribute name="DESCRIPTION" value="  Ultra Low Power Harvester Power Management IC with Boost Charger, and Nanopower Buck Converter 20-VQFN "/>
+<attribute name="MF" value="Texas Instruments"/>
+<attribute name="MP" value="BQ25570RGRR"/>
+<attribute name="PACKAGE" value="VQFN-20 Texas Instruments"/>
+<attribute name="PRICE" value="None"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+</drawing>
+</eagle>
