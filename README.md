@@ -22,15 +22,8 @@ An energy harvester with advanced monitoring capabilities.
 <!-- /TOC -->
 
 ## About The Project
-<<<<<<< Updated upstream
-This project was created with [Autodesk EAGLE](http://eagle.autodesk.com/)
-=======
-<<<<<<< HEAD
+
 This project was created with <a href="http://eagle.autodesk.com/" target="_blank">Autodesk EAGLE</a>
-=======
-This project was created with [Autodesk EAGLE](http://eagle.autodesk.com/)
->>>>>>> master
->>>>>>> Stashed changes
 
 ## Getting Started
 
