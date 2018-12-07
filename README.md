@@ -23,7 +23,7 @@ An energy harvester with advanced monitoring capabilities.
 
 ## About The Project
 
-This project was created with <a href="http://eagle.autodesk.com/" target="_blank">Autodesk EAGLE</a>
+This project was created with [Autodesk EAGLE](http://eagle.autodesk.com/)
 
 ## Getting Started
 
@@ -50,6 +50,6 @@ This project was created with <a href="http://eagle.autodesk.com/" target="_blan
 ### Power Delivery
 
 ## License
-Released under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC BY-SA 3.0</a>
+Released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 ![CC BY-SA 3.0](https://i.imgur.com/wnw2ful.png)
