@@ -51,3 +51,5 @@ This project was created with <a href="http://eagle.autodesk.com/" target="_blan
 
 ## License
 Released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+![CC BY-SA 3.0](https://i.imgur.com/wnw2ful.png)
