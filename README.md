@@ -50,6 +50,6 @@ This project was created with <a href="http://eagle.autodesk.com/" target="_blan
 ### Power Delivery
 
 ## License
-Released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+Released under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC BY-SA 3.0</a>
 
 ![CC BY-SA 3.0](https://i.imgur.com/wnw2ful.png)
