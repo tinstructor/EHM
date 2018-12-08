@@ -12,6 +12,7 @@ An energy harvester with advanced monitoring capabilities.
     - [Generating Gerber Files](#generating-gerber-files)
   - [Using the Hardware](#using-the-hardware)
     - [Ordering PCB's](#ordering-pcbs)
+    - [Sourcing Components](#sourcing-components)
     - [Soldering](#soldering)
     - [Energy Harvester](#energy-harvester)
     - [Current Sense Amplifiers](#current-sense-amplifiers)
@@ -80,11 +81,17 @@ After browsing the file explorer and choosing the appropriate CAM file, all you 
 
 Now, when it comes to ordering PCB's there are a stupid amount of manufacturers out there and they're all claiming some perceived advantage over their competitors. Let me tell you, for the most part it's all marketing b\*llsh\*t. Which manufacturer you choose typically depends on price, manufacturing capabilities and how fast they can deliver. For hobbyists like you and me, the latter is typically of less importance while we tend to focuss more on low pricing.
 
-These days, when I order relatively small dual-layer PCB's for prototyping purposes I'll typically order from [JLCPCB](https://jlcpcb.com/). For the price their manufacturing capabilities and quality are outstanding. In fact, you'll have a hard time finding better prices regardless off  manufacturing capabilities. I mean, €7.05 for 10 PCB's and a stencil is somwhat unreal.
+These days, when I order relatively small dual-layer PCB's for prototyping purposes I'll typically order from [JLCPCB](https://jlcpcb.com/). For the price their manufacturing capabilities and quality are outstanding. In fact, you'll have a hard time finding better prices regardless off  manufacturing capabilities. I mean, €7.05 (before shipping) for 10 PCB's and a stencil is somewhat unreal.
 
->**Note:** choosing a lead-free finish will add €5.27 to the total price. However, since most hobbyist solder with leaded solder anyway you must ask yourself whether shelling out extra money for a small batch of prototypes is worth it.
+>**Note:** choosing a lead-free finish will add €5.27 to the total price. However, since most hobbyist solder with leaded solder anyway, you must ask yourself whether shelling out extra money for a small batch of prototypes is worth it.
 
 ![jlcpcb](https://i.imgur.com/n989hVG.png)
+
+### Sourcing Components
+
+First of all, let me state that sourcing components for absolute bottom dollar (or euro in my case) may well be considered a black art. My advise would be to get what you can on [LCSC](https://lcsc.com/) and have them ship your order together with your PCB's from [JLCPCB](https://jlcpcb.com/). That way you can avoid additional shipping fees.
+
+Since the component selection on LCSC is somewhat limited you could go to places like [Mouser](https://www.mouser.com/) for the miscellaneous stuff like the BQ25570RGRR energy harvesting IC and the MAX9934TAUA+ current sense amplifier.
 
 ### Soldering
 
