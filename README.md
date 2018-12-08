@@ -64,6 +64,16 @@ Learning to use EAGLE efficiently may seem difficult in the beginning but it's n
 
 ### Generating Gerber Files
 
+In case you've made changes to the board layout, you'll need to generate new Gerber files. These files tell the machines of your PCB manufacturer of choice how to lay out all traces and other stuff exactly how you designed it. In order to do this, open the board layout window and navigate to the `File > CAM Processor` tab.
+
+![cam processor](https://i.imgur.com/vqzKKHu.png)
+
+A pop-up window now appears. The process of generating gerber files is clearly demonstrated in [this video](https://youtu.be/Jf2y1rTRHDg). However, I've spared you some extra steps and created a simple cam job file `gerb274x.cam` (located in `EHM\CAM`) for you to load as follows:
+
+![cam job](https://i.imgur.com/k3a9aoq.png)
+
+After browsing the file explorer and choosing the appropriate CAM file, all you need to do is press the `Process Job` button in the bottom-right corner of the CAM Processor pop-up window. This will generate a new zip archive called `Gerber.zip`
+
 ## Using the Hardware
 
 ### Ordering PCB's
@@ -79,6 +89,6 @@ Learning to use EAGLE efficiently may seem difficult in the beginning but it's n
 ### Power Delivery
 
 ## License
-Released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+This project and all original material included with it are released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 ![CC BY-SA 3.0](https://i.imgur.com/wnw2ful.png)
