@@ -72,11 +72,19 @@ A pop-up window now appears. The process of generating gerber files is clearly d
 
 ![cam job](https://i.imgur.com/k3a9aoq.png)
 
-After browsing the file explorer and choosing the appropriate CAM file, all you need to do is press the `Process Job` button in the bottom-right corner of the CAM Processor pop-up window. This will generate a new zip archive called `Gerber.zip`
+After browsing the file explorer and choosing the appropriate CAM file, all you need to do is press the `Process Job` button in the bottom-right corner of the CAM Processor pop-up window. This will generate a new zip archive called `Gerber.zip` in the `EHM\Project` folder. If you didn't make any changes, a handy `Gerber.zip` archive is already located in the repository folder itself (`EHM\Gerber.zip`).
 
 ## Using the Hardware
 
 ### Ordering PCB's
+
+Now, when it comes to ordering PCB's there are a stupid amount of manufacturers out there and they're all claiming some perceived advantage over their competitors. Let me tell you, for the most part it's all marketing b\*llsh\*t. Which manufacturer you choose typically depends on price, manufacturing capabilities and how fast they can deliver. For hobbyists like you and me, the latter is typically of less importance while we tend to focuss more on low pricing.
+
+These days, when I order relatively small dual-layer PCB's for prototyping purposes I'll typically order from [JLCPCB](https://jlcpcb.com/). For the price their manufacturing capabilities and quality are outstanding. In fact, you'll have a hard time finding better prices regardless off  manufacturing capabilities. I mean, €7.05 for 10 PCB's and a stencil is somwhat unreal.
+
+>**Note:** choosing a lead-free finish will add €5.27 to the total price. However, since most hobbyist solder with leaded solder anyway you must ask yourself whether shelling out extra money for a small batch of prototypes is worth it.
+
+![jlcpcb](https://i.imgur.com/n989hVG.png)
 
 ### Soldering
 
