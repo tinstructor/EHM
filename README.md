@@ -93,7 +93,17 @@ First of all, let me state that sourcing components for absolute bottom dollar (
 
 Since the component selection on LCSC is somewhat limited you could go to places like [Mouser](https://www.mouser.com/) for the miscellaneous stuff like the BQ25570RGRR energy harvesting IC and the MAX9934TAUA+ current sense amplifier.
 
+Anyway, at the time of writing this, I wasn't sure yet as to which type of energy I'd be harvesting (solar, thermal, ...) so I couldn't really give you a Bill Of Materials (BOM). However, since most critical components are marked in the schematic with their full partname I'm sure you'll have no trouble obtaining the correct components if you really wanted to. My advice would be to always make sure you get the part with the correct footprint.
+
+Oh yeah and before I forget, sites like [Banggood](https://www.banggood.com/) are amazing for getting pre-assembled cables like [this](https://www.banggood.com/10Pcs-Mini-Micro-JST-2_0-PH-6Pin-Connector-Plug-With-30cm-Wires-Cables-p-1147297.html) one and [this](https://www.banggood.com/100Pcs-Mini-Micro-JST-2_0-PH-2Pin-Connector-Plug-With-120mm-Wires-Cables-p-1147298.html) one. What's more, Banggood typically charges completely nothing for shipping. The only downside is that stuff will take some weeks to arrive at your doorstep. That's what you get for being so cheap.
+
 ### Soldering
+
+While we're on the subject of Banggood, they have a pretty awesome selection of soldering supplies. I myself am a big fan of offerings from [Mechanic](https://www.banggood.com/search/mechanic-solder.html) and of their XG-Z40 solder paste syringe in particular. If you have no morality issues with leaded solder and you want to spend less money and time on soldering, XG-Z40 is the way to go.
+
+>**Note:** when buying solder paste in a syringe (like the XG-Z40) you'll also need some [blunt tip needles](https://www.banggood.com/search/blunt-tip-fill-needle.html). Make sure to 
+
+![xg-z40](https://i.imgur.com/9zGbwqW.png)
 
 ### Energy Harvester
 
