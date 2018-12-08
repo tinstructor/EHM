@@ -101,9 +101,11 @@ Oh yeah and before I forget, sites like [Banggood](https://www.banggood.com/) ar
 
 While we're on the subject of Banggood, they have a pretty awesome selection of soldering supplies. I myself am a big fan of offerings from [Mechanic](https://www.banggood.com/search/mechanic-solder.html) and of their XG-Z40 solder paste syringe in particular. If you have no morality issues with leaded solder and you want to spend less money and time on soldering, XG-Z40 is the way to go.
 
->**Note:** when buying solder paste in a syringe (like the XG-Z40) you'll also need some [blunt tip needles](https://www.banggood.com/search/blunt-tip-fill-needle.html). Make sure to 
+>**Note:** when buying solder paste in a syringe (like the XG-Z40) you'll also need some [blunt tip needles](https://www.banggood.com/search/blunt-tip-fill-needle.html). Make sure to choose tips with a sufficiently large diameter. Otherwise you'll have a hard time pushing out solder paste. My advice is to go with 0.9mm diameter (typically pink) ones. You'll also need to plan a trip to your local pharmacy to get some [10ml syringes](https://www.farmaline.be/apotheek/bestellen/wegwerpspuit-10-ml-terumo-zonder-naald-ss-10es/) because you'll need the rubber plunger thingy in order to push the solder out of the syringe.
 
-![xg-z40](https://i.imgur.com/9zGbwqW.png)
+![XG-Z40](https://i.imgur.com/Ypw5MJX.jpg)
+
+
 
 ### Energy Harvester
 
