@@ -122,7 +122,15 @@ After putting solder paste on your board and carefully sticking the component to
 
 ### Energy Harvester
 
-![Imgur](https://i.imgur.com/TWJK8u1.png)
+`EHM\Datasheets\bq25570.pdf` and `EHM\Literature\sluuaa7a.pdf`
+
+![Imgur](https://i.imgur.com/yBrZWuL.png)
+
+![Imgur](https://i.imgur.com/VKKGwCk.png)
+
+`EHM\BQ25570_Design_Help_V1_3.xlsx`
+
+![design help](https://i.imgur.com/TWJK8u1.png)
 
 ### Current Sense Amplifiers
 
