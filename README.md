@@ -105,13 +105,18 @@ Oh yeah and before I forget, sites like [Banggood](https://www.banggood.com/) ar
 
 ### Soldering
 
-While we're on the subject of Banggood, they have a pretty awesome selection of soldering supplies. I myself am a big fan of offerings from [Mechanic](https://www.banggood.com/search/mechanic-solder.html) and of their XG-Z40 solder paste syringe in particular. If you have no morality issues with leaded solder and you want to spend less money and time on soldering, XG-Z40 is the way to go.
+While we're on the subject of Banggood, they have a pretty awesome selection of soldering supplies. I myself am a big fan of offerings from [Mechanic](https://www.banggood.com/search/mechanic-solder.html) and of their [XG-Z40](https://www.banggood.com/XG-Z40-10cc-Syringe-Solder-Paste-Flux-Paste-Sn63Pb37-25-45um-p-973158.html) solder paste syringe in particular. If you have no morality issues with leaded solder and you want to spend less money and time on soldering, XG-Z40 is the way to go.
 
 >**Note:** when buying solder paste in a syringe (like the XG-Z40) you'll also need some [blunt tip needles](https://www.banggood.com/search/blunt-tip-fill-needle.html). Make sure to choose tips with a sufficiently large diameter. Otherwise you'll have a hard time pushing out solder paste. My advice is to go with 0.9mm diameter (typically pink) ones. You'll also need to plan a trip to your local pharmacy to get some [10ml syringes](https://www.farmaline.be/apotheek/bestellen/wegwerpspuit-10-ml-terumo-zonder-naald-ss-10es/) because you'll need the rubber plunger thingy in order to push the solder out of the syringe.
 
 ![XG-Z40](https://i.imgur.com/Ypw5MJX.jpg)
 
+While XG-Z40 is fine for small rework purposes (as shown in [this](https://youtu.be/4Z1B_DbW-C0) video), when using a stencil you'd really need some [solder paste](https://www.banggood.com/MECHANIC-Soldering-Solder-Welding-Paste-Flux-SMD-SMT-Sn63Pb37-Tool-Soldering-Iron-Flux-Repair-Tool-p-1328894.html) in a jar. Numerous tutorials are available on how to start using stencils for solder paste dispension. For example [this](https://www.youtube.com/watch?v=WDIqtGMROjM) video from Sparkfun is a great place to start when you don't have the funds for an expensive stencil printer. If you do however (have such funds), [this](https://youtu.be/ud8odsM8eA4) video shows how its done.
 
+After putting solder paste on your board and carefully sticking the component to it, you have several different options for heating the solder paste so that it may eventually solidify. For example, you could hit it with a [hot air station](https://www.reichelt.com/be/en/digital-hot-air-smd-rework-station-320w-esd-station-zd-939l-p161632.html). Hot air stations are relatively cheap compared to other solutions and besides, they are an irreplaceable shop tool. Another cheap-ish option is a [hot plate](https://www.tindie.com/products/LafrasH/modern-electronics-reflowr-v2/). The problem with it is that it really only works well for one side of your PCB, which would require you to manually solder components to the pads on the opposite side of the PCB with a hot air gun and/or a conventional soldering iron (with some special tips). Nonetheless this may prove useful if you've placed the most difficult to solder components on the same side. A much more powerful and vastly more expensive solution is something like a
+[vapour phase reflow oven](https://www.eleshop.nl/vapour-phase-soldeeroven-mini-condens-it.html).
+
+>**Note:** some people even use conventional electrically heated skillets or toaster ovens. While these methods are inexpensive they tend to 
 
 ### Energy Harvester
 
