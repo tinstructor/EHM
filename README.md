@@ -116,7 +116,9 @@ While XG-Z40 is fine for small rework purposes (as shown in [this](https://youtu
 After putting solder paste on your board and carefully sticking the component to it, you have several different options for heating the solder paste so that it may eventually solidify. For example, you could hit it with a [hot air station](https://www.reichelt.com/be/en/digital-hot-air-smd-rework-station-320w-esd-station-zd-939l-p161632.html). Hot air stations are relatively cheap compared to other solutions and besides, they are an irreplaceable shop tool. Another cheap-ish option is a [hot plate](https://www.tindie.com/products/LafrasH/modern-electronics-reflowr-v2/). The problem with it is that it really only works well for one side of your PCB, which would require you to manually solder components to the pads on the opposite side of the PCB with a hot air gun and/or a conventional soldering iron (with some special tips). Nonetheless this may prove useful if you've placed the most difficult to solder components on the same side. A much more powerful and vastly more expensive solution is something like a
 [vapour phase reflow oven](https://www.eleshop.nl/vapour-phase-soldeeroven-mini-condens-it.html).
 
->**Note:** some people even use conventional electrically heated skillets or toaster ovens. While these methods are inexpensive they tend to 
+>**Note:** some people even use conventional electrically heated skillets or toaster ovens. While these methods are inexpensive, they tend to heat your PCB unevenly, potentially causing spotburns and/or tombstoning. The same can be said about the IR reflow ovens of yesteryear.
+
+![ZD-939L](https://i.imgur.com/vGHQUZS.png)
 
 ### Energy Harvester
 
