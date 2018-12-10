@@ -87,9 +87,9 @@ These days, when I order relatively small dual-layer PCB's for prototyping purpo
 
 ![jlcpcb](https://i.imgur.com/n989hVG.png)
 
-A great way to save some cost in the long run while making your job easier is to use a stencil printer like [this](https://www.tindie.com/products/CYBRES/cybres-sp2421-stencil-printer/) one. The purpose of a stencil printer will become clear in the section on [Soldering](#soldering). What you need to know at this stage is that if you plan on using such a machine you don't need to order a heavy frame with your stencil which lowers the shipping costs significantly. However, stencil jigs typically accept stencils with a maximum size. Make sure to set the size of the stencil accordingly when ordering!
+A great way to save some cost in the long run while making your job easier is to use a stencil printer like the [CYBRES SP2421](https://www.tindie.com/products/CYBRES/cybres-sp2421-stencil-printer/) or the [NeoDen PM3040](https://printtec.nl/contents/nl/d361.html). The purpose of a stencil printer will become clear in the section on [Soldering](#soldering). What you need to know at this stage is that there are two types of (manual) stencil printers: while the SP2421 requires no stencil frame (where the PM3040 does) it does require a set of precision cut holes in your stencil. If you've got the capabilities to cut these holes and do it precisely, it's a great way to save some money on both the printer itself as well as the additional shipping costs associated with framed stencils.
 
->**Note:** setting a custom stencil size comes with no additional cost, at least on [JLCPCB](https://jlcpcb.com/) it doesn't.
+>**Note:** stencil jigs typically accept stencils with a maximum size. Make sure to set the size of the stencil accordingly when ordering! Setting a custom stencil size comes with no additional cost, at least on [JLCPCB](https://jlcpcb.com/) it doesn't.
 
 ![stencil size](https://i.imgur.com/vpXTCht.png)
 
@@ -110,6 +110,8 @@ While we're on the subject of Banggood, they have a pretty awesome selection of 
 >**Note:** when buying solder paste in a syringe (like the XG-Z40) you'll also need some [blunt tip needles](https://www.banggood.com/search/blunt-tip-fill-needle.html). Make sure to choose tips with a sufficiently large diameter. Otherwise you'll have a hard time pushing out solder paste. My advice is to go with 0.9mm diameter (typically pink) ones. You'll also need to plan a trip to your local pharmacy to get some [10ml syringes](https://www.farmaline.be/apotheek/bestellen/wegwerpspuit-10-ml-terumo-zonder-naald-ss-10es/) because you'll need the rubber plunger thingy in order to push the solder out of the syringe.
 
 ![XG-Z40](https://i.imgur.com/Ypw5MJX.jpg)
+
+
 
 ### Energy Harvester
 
