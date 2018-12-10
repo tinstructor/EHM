@@ -122,6 +122,8 @@ After putting solder paste on your board and carefully sticking the component to
 
 ### Energy Harvester
 
+![Imgur](https://i.imgur.com/TWJK8u1.png)
+
 ### Current Sense Amplifiers
 
 ### Voltage Buffers
