@@ -153,9 +153,13 @@ The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) hi
 
 ![vout conf](https://i.imgur.com/yBrZWuL.png)
 
-`EHM\BQ25570_Design_Help_V1_3.xlsx`
+The `EHM\BQ25570_Design_Help_V1_3.xlsx` spreadsheet is a handy tool that calculates a set of resistor values that fits best within the operational constraints provided by you, the user. For your convenience I've provided you with some values that reflect a common scenario wherein a single cel Li-Ion battery or a dual cell NiMH battery are used as a storage element in conjunction with, e.g., a small solar cell (with an output voltage ≤ 3.5V) such as [this](https://www.banggood.com/0_36W-2V-42_548_53mm-Solar-Panel-Epoxy-Board-with-Wire-p-1369156.html?rmmds=search&cur_warehouse=CN) one (when space is limited) or [this](https://www.banggood.com/3_5V-250mA-0_8W-Mini-Epoxy-Solar-Panel-Photovoltaic-Panel-p-987778.html?rmmds=search&cur_warehouse=CN) one when device footprint is no issue.
 
-![design help](https://i.imgur.com/TWJK8u1.png)
+>**Note:** the MPPT percentage (40%) is just for demonstration purposes in this case. Solar panels work best when the MPPT percentage is set to approximately 80%.
+
+![solar panel](https://i.imgur.com/ZaABeAV.png)
+
+![design help](https://i.imgur.com/IIKtmSY.png)
 
 All resistors are E96 series 1% resistors with an 0603 footprint. The following table provides a summary of the proposed configuration and the passive components required:
 
