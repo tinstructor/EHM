@@ -147,9 +147,13 @@ Switching the MPPT percentage between 50% (VOC_SAMP = GND), 80% (VOC_SAMP = VBAT
 
 That being said, certain requirements need to be met before the main boost charger (with the aforementioned impedance matching capabilities) is operational. More specifically, when VSTOR < VSTOR_CHGEN (= 1.8V) the IC operates in cold-start mode. The cold-start circuit is essentially an unregulated, hysteretic boost converter with lower efficiency compared to the main boost charger. None of the other features function during cold start operation.
 
-The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) higher than VSTOR_CHGEN so that the main boost charger can operate. When the VSTOR voltage reaches VSTOR_CHGEN, the main boost charger starts up. Once the VSTOR pin voltage goes above VBAT_UV plus the VBAT_UV_HYST threshold, the VSTOR pin and VBAT pins are effectively shorted through an internal PMOS FET.
-
 >**Note:** `EHM\Literature\kong2012.pdf` explains in great detail why a cold start cirquit might be necessary.
+
+The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) higher than VSTOR_CHGEN so that the main boost charger can operate. When the VSTOR voltage reaches VSTOR_CHGEN, the main boost charger starts up. Once the VSTOR pin voltage goes above VBAT_UV (1.95V) plus the VBAT_UV_HYST threshold (15mV), the VSTOR pin and VBAT pins are effectively shorted through an internal PMOS FET. The switch remains closed until the VSTOR pin voltage falls below the VBAT_UV threshold. The VBAT_UV threshold should be considered a fail safe to the system and the system load should be removed or reduced based on the user-configurable VBAT_OK threshold which should be set above the VBAT_UV threshold.
+
+To prevent rechargeable batteries from being exposed to excessive charging voltages and to prevent over charging a capacitive storage element, the over-voltage (VBAT_OV) threshold level must be set using external resistors. This is also the voltage value to which the charger will regulate the VSTOR/VBAT pin when the input provides sufficient power.
+
+Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J2). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by the user programmed resistor divider.
 
 ![vout conf](https://i.imgur.com/yBrZWuL.png)
 
