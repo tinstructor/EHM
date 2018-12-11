@@ -133,17 +133,19 @@ According to the design principles and other useful information laid out in `EHM
 >
 > **Texas Instruments**
 
-In order to do this, the capabilities of the BQ25570 are twofold. First of all, it contains a boost charger whose intended purpose is to boost the low voltage output of harvesters such as small solar cells or a Thermo-Electric Generator (TEG) to a constant voltage level that is sufficiently high to charge a storage element connected to the battery terminal J4. It does this as efficiently as possible by means of a mechanism called Maximum Powerpoint Tracking (MPPT). The purpose of MPPT is to match the input impedance of the boost charger to the output impedance of the energy harvester which in turn ensures a maximum transfer of power. If the output impedance where to be purely resistive, setting the MPPT percentage to 50%  
+In order to do this, the capabilities of the BQ25570 are twofold. First of all, it contains a boost charger whose intended purpose is to boost the low voltage output of harvesters such as small solar cells or a Thermo-Electric Generator (TEG) to a constant voltage level that is sufficiently high to charge a storage element connected to the battery terminal J4. It does this as efficiently as possible by means of a mechanism called Maximum Powerpoint Tracking (MPPT). The purpose of MPPT is to match the input impedance of the boost charger to the output impedance of the energy harvester which in turn ensures a maximum transfer of power.
 
-![vout conf](https://i.imgur.com/yBrZWuL.png)
+More specifically, in this case, the integrated MPPT block continuously measures a certain user configurable percentage (i.e., the MPPT percentage) of the energy harvester's open circuit voltage and uses this information to control the switching frequency of the boost converter to match its input impedance to be equal to the harvester's output impedance, thus assuring maximum power transfer. Choosing the MPPT percentage depends heavily on the type of energy harvesting device. If its output impedance is purely resistive, setting the MPPT percentage to 50% ensures maximum power transfer. However, the capacitive nature of a solar cell's output impedance requires an MPPT percentage closer to 80%. For your convenience I've added the possibility to
 
 ![mppt conf](https://i.imgur.com/VKKGwCk.png)
+
+![vout conf](https://i.imgur.com/yBrZWuL.png)
 
 `EHM\BQ25570_Design_Help_V1_3.xlsx`
 
 ![design help](https://i.imgur.com/TWJK8u1.png)
 
-All resistors are E96 series 1% resistors with an 0603 footprint.
+All resistors are E96 series 1% resistors with an 0603 footprint. The following table provides a summary of the proposed configuration and the passive components required:
 
 ![tables](https://i.imgur.com/t1auMWZ.png)
 
