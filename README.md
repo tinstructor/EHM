@@ -10,10 +10,11 @@ An energy harvester with advanced monitoring capabilities.
     - [Installing Autodesk EAGLE](#installing-autodesk-eagle)
     - [Navigating the Project Files](#navigating-the-project-files)
     - [Generating Gerber Files](#generating-gerber-files)
-  - [Using the Hardware](#using-the-hardware)
+  - [Hardware Configuration](#hardware-configuration)
     - [Ordering PCB's](#ordering-pcbs)
     - [Sourcing Components](#sourcing-components)
     - [Soldering](#soldering)
+  - [Device Operation](#device-operation)
     - [Energy Harvester](#energy-harvester)
     - [Current Sense Amplifiers](#current-sense-amplifiers)
     - [Voltage Buffers](#voltage-buffers)
@@ -75,7 +76,7 @@ A pop-up window now appears. The process of generating gerber files is clearly d
 
 After browsing the file explorer and choosing the appropriate CAM file, all you need to do is press the `Process Job` button in the bottom-right corner of the CAM Processor pop-up window. This will generate a new zip archive called `Gerber.zip` in the `EHM\Project` folder. If you didn't make any changes, a handy `Gerber.zip` archive is already located in the repository folder itself (`EHM\Gerber.zip`).
 
-## Using the Hardware
+## Hardware Configuration
 
 ### Ordering PCB's
 
@@ -122,17 +123,29 @@ After putting solder paste on your board and carefully sticking the component to
 
 ![ZD-939L](https://i.imgur.com/vGHQUZS.png)
 
+## Device Operation
+
 ### Energy Harvester
 
-`EHM\Datasheets\bq25570.pdf` and `EHM\Literature\sluuaa7a.pdf`
+According to the design principles and other useful information laid out in `EHM\Datasheets\bq25570.pdf` and `EHM\Literature\sluuaa7a.pdf`, the BQ25570 IC allows for a number of configurations to be made pertaining to its operation. But before we can start you might be wondering, what exactly is the function of this chip? The following quote should start to make things somewhat clear:
 
-![Imgur](https://i.imgur.com/yBrZWuL.png)
+> *The bq25570 device is a highly integrated energy harvesting Nano-Power management solution that ... is specifically designed to efficiently acquire and manage the microwatts (µW) to milliwatts (mW) of power generated from a variety of DC sources like photovoltaic (solar) or thermal electric generators. \[It is\] targeted toward products and systems, such as wireless sensor networks (WSN) which have stringent power and operational demands.*
+>
+> **Texas Instruments**
 
-![Imgur](https://i.imgur.com/VKKGwCk.png)
+In order to do this, the capabilities of the BQ25570 are twofold. First of all, it contains a boost charger whose intended purpose is to boost the low voltage output of harvesters such as small solar cells or a Thermo-Electric Generator (TEG) to a constant voltage level that is sufficiently high to charge a storage element connected to the battery terminal J4. It does this as efficiently as possible by means of a mechanism called Maximum Powerpoint Tracking (MPPT). The purpose of MPPT is to match the input impedance of the boost charger to the output impedance of the energy harvester which in turn ensures a maximum transfer of power. If the output impedance where to be purely resistive, setting the MPPT percentage to 50%  
+
+![vout conf](https://i.imgur.com/yBrZWuL.png)
+
+![mppt conf](https://i.imgur.com/VKKGwCk.png)
 
 `EHM\BQ25570_Design_Help_V1_3.xlsx`
 
 ![design help](https://i.imgur.com/TWJK8u1.png)
+
+All resistors are E96 series 1% resistors with an 0603 footprint.
+
+![tables](https://i.imgur.com/t1auMWZ.png)
 
 ### Current Sense Amplifiers
 
