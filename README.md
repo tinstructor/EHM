@@ -129,7 +129,7 @@ After putting solder paste on your board and carefully sticking the component to
 
 According to the design principles and other useful information laid out in `EHM\Datasheets\bq25570.pdf` and `EHM\Literature\sluuaa7a.pdf`, the BQ25570 IC allows for a number of configurations to be made pertaining to its operation. But before we can start you might be wondering, what exactly is the function of this chip? The following quote should start to make things somewhat clear:
 
-> *The bq25570 device is a highly integrated energy harvesting Nano-Power management solution that ... is specifically designed to efficiently acquire and manage the microwatts (µW) to milliwatts (mW) of power generated from a variety of DC sources like photovoltaic (solar) or thermal electric generators. \[It is\] targeted toward products and systems, such as wireless sensor networks (WSN) which have stringent power and operational demands.*
+> *"The bq25570 device is a highly integrated energy harvesting Nano-Power management solution that ... is specifically designed to efficiently acquire and manage the microwatts (µW) to milliwatts (mW) of power generated from a variety of DC sources like photovoltaic (solar) or thermal electric generators. \[It is\] targeted toward products and systems, such as wireless sensor networks (WSN) which have stringent power and operational demands."*
 >
 > **Texas Instruments**
 
@@ -144,6 +144,12 @@ Switching the MPPT percentage between 50% (VOC_SAMP = GND), 80% (VOC_SAMP = VBAT
 ![jumper](https://i.imgur.com/8uMYhUQ.png)
 
 ![mppt conf](https://i.imgur.com/VKKGwCk.png)
+
+That being said, certain requirements need to be met before the main boost charger (with the aforementioned impedance matching capabilities) is operational. More specifically, when VSTOR < VSTOR_CHGEN (= 1.8V) the IC operates in cold-start mode. The cold-start circuit is essentially an unregulated, hysteretic boost converter with lower efficiency compared to the main boost charger. None of the other features function during cold start operation.
+
+The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) higher than VSTOR_CHGEN so that the main boost charger can operate. When the VSTOR voltage reaches VSTOR_CHGEN, the main boost charger starts up. Once the VSTOR pin voltage goes above VBAT_UV plus the VBAT_UV_HYST threshold, the VSTOR pin and VBAT pins are effectively shorted through an internal PMOS FET.
+
+>**Note:** `EHM\Literature\kong2012.pdf` explains in great detail why a cold start cirquit might be necessary.
 
 ![vout conf](https://i.imgur.com/yBrZWuL.png)
 
