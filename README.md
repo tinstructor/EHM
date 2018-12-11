@@ -101,6 +101,8 @@ Since the component selection on LCSC is somewhat limited you could go to places
 
 Anyway, at the time of writing this, I wasn't sure yet as to which type of energy I'd be harvesting (solar, thermal, ...) so I couldn't really give you a Bill Of Materials (BOM). However, since most critical components are marked in the schematic with their full partname I'm sure you'll have no trouble obtaining the correct components if you really wanted to. My advice would be to always make sure you get the part with the correct footprint.
 
+>**Note:** make sure to order y14870rxxx00b9r type current resistors with a CSM2512 footprint as illustrated in `EHM\Datasheets\y14870rxxx00b9r.pdf`.
+
 Oh yeah and before I forget, sites like [Banggood](https://www.banggood.com/) are amazing for getting pre-assembled cables like [this](https://www.banggood.com/10Pcs-Mini-Micro-JST-2_0-PH-6Pin-Connector-Plug-With-30cm-Wires-Cables-p-1147297.html) one and [this](https://www.banggood.com/100Pcs-Mini-Micro-JST-2_0-PH-2Pin-Connector-Plug-With-120mm-Wires-Cables-p-1147298.html) one. What's more, Banggood typically charges completely nothing for shipping. The only downside is that stuff will take some weeks to arrive at your doorstep. That's what you get for being so cheap.
 
 ### Soldering
