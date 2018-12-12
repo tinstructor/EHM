@@ -197,6 +197,8 @@ All resistors are E96 series 1% resistors with an 0603 footprint. The following 
 
 ![tables](https://i.imgur.com/t1auMWZ.png)
 
+I strongly recommend you to read `EHM\Datasheets\bq25570.pdf` for additional design considerations, e.g., regarding the appropriate sizing of several capacitors, etc.
+
 ### Current Sense Amplifiers
 
 ### Voltage Buffers
