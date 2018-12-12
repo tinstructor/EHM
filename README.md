@@ -185,13 +185,13 @@ The `EHM\BQ25570_Design_Help_V1_3.xlsx` spreadsheet is a handy tool that calcula
 
 ![design help](https://i.imgur.com/IIKtmSY.png)
 
-Choosing an appropriately sized solar panel and storage element (most likely a 3.7V battery) is not an easy feat and depends heavily on your use case. Luckily I've provided another handy spreadsheet (`EHM\bq25570SolarAppDesignExample_V1p3.xlsx`) which accepts a number of parameters and calculates the required size of your solar panel as well as the minum battery capacity required (given a nominal voltage). I've loaded the spreadsheet with some parameters that reflect the absolute worst case scenario for a sensor node that uses every possible function of the hardware (including chips other than the BQ25570) to repeatedly send a message every 60 seconds.
+Choosing an appropriately sized solar panel and storage element (most likely a 3.7V battery) is not an easy feat and depends heavily on your use case. Luckily I've provided another handy spreadsheet (`EHM\bq25570SolarAppDesignExample_V1p3.xlsx`) which accepts a number of parameters and calculates the required size of your solar panel as well as the minimum battery capacity required (given a nominal voltage). I've loaded the spreadsheet with some parameters that reflect the absolute worst case scenario for a sensor node that uses every possible function of the hardware (including chips other than the BQ25570) to repeatedly send a message every 60 seconds.
 
->**Note:** seriously, even if you tried you wouldn't be able to design a **sensor** node setup with a worse performance than the one laid out in `EHM\bq25570SolarAppDesignExample_V1p3.xlsx`. Except maybe if you used IEEE 802.11b links or something funny like that.
+>**Note:** seriously, even if you tried you wouldn't be able to design a **sensor** node setup with a worse performance than the one laid out in `EHM\bq25570SolarAppDesignExample_V1p3.xlsx`. Except maybe if you used IEEE 802.11 links or something funny like that.
 
 ![solar panel](https://i.imgur.com/ZaABeAV.png)
 
-![solar app](https://i.imgur.com/7qMZ8b3.png)
+![solar app](https://i.imgur.com/FzTSnD5.png)
 
 All resistors are E96 series 1% resistors with an 0603 footprint. The following table provides a summary of the proposed configuration and the passive components required:
 
