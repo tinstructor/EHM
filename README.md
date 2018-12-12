@@ -139,6 +139,8 @@ In order to do this, the capabilities of the BQ25570 are twofold. First of all, 
 
 More specifically, in this case, the integrated MPPT block continuously measures a certain user configurable percentage (i.e., the MPPT percentage) of the energy harvester's open circuit voltage and uses this information to control the switching frequency of the boost converter to match its input impedance to be equal to the harvester's output impedance, thus assuring maximum power transfer. Choosing the MPPT percentage depends heavily on the type of energy harvesting device. If its output impedance is purely resistive, setting the MPPT percentage to 50% (VOC_SAMP = GND) ensures maximum power transfer. However, the capacitive nature of a solar cell's output impedance requires an MPPT percentage closer to 80% (VOC_SAMP = VBAT). For your convenience I've also added the possibility to set a custom MPPT percentage by means of a resistor divider consisting of (R12 + R13) and R14.
 
+<img src="https://latex.codecogs.com/gif.latex?MPPT\textsubscript{custom}&space;=&space;\frac{R\textsubscript{12}&space;&plus;&space;R\textsubscript{13}}{R\textsubscript{12}&space;&plus;&space;R\textsubscript{13}&space;&plus;&space;R\textsubscript{14}}&space;\times&space;100\:\%" title="MPPT\textsubscript{custom} = \frac{R\textsubscript{12} + R\textsubscript{13}}{R\textsubscript{12} + R\textsubscript{13} + R\textsubscript{14}} \times 100\:\%" />
+
 Switching the MPPT percentage between 50% (VOC_SAMP = GND), 80% (VOC_SAMP = VBAT) or a custom value can be done by setting a jumper (see picture below) to the corresponding position on JP1. The same connector (JP1) also provides the ability to either enable or disable the entire chip by tying the NEN input of the IC to GND or VBAT respectively.
 
 ![jumper](https://i.imgur.com/8uMYhUQ.png)
@@ -153,7 +155,19 @@ The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) hi
 
 To prevent rechargeable batteries from being exposed to excessive charging voltages and to prevent over charging a capacitive storage element, the over-voltage (VBAT_OV) threshold level must be set using external resistors. This is also the voltage value to which the charger will regulate the VSTOR/VBAT pin when the input provides sufficient power.
 
-Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J2). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by the user programmed resistor divider.
+The charger allows the user to set a programmable voltage independent of the overvoltage and undervoltage settings to indicate whether the VSTOR voltage (and therefore the VBAT voltage when the PFET between the two pins is turned on) is at an acceptable level. When the battery voltage is decreasing the threshold is set by:
+
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{19}}{R\textsubscript{17}})" title="V\textsubscript{BAT, OK} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{19}}{R\textsubscript{17}})" />
+
+When the battery voltage is increasing, the threshold is set by:
+
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK&space;(HYST)}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{18}&space;&plus;&space;R\textsubscript{19}}{R\textsubscript{17}})" title="V\textsubscript{BAT, OK (HYST)} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{18} + R\textsubscript{19}}{R\textsubscript{17}})" />
+
+![threshold voltages](https://i.imgur.com/6fwH95w.png)
+
+Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J2). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by a user programmable resistor divider.
+
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{OUT}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(\frac{R\textsubscript{22}&space;&plus;&space;R\textsubscript{23}}{R\textsubscript{23}})" title="V\textsubscript{OUT} = V\textsubscript{BIAS} \times (\frac{R\textsubscript{22} + R\textsubscript{23}}{R\textsubscript{23}})" />
 
 ![vout conf](https://i.imgur.com/yBrZWuL.png)
 
