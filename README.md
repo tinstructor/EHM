@@ -171,19 +171,27 @@ The logic high level of this signal (i.e., the VBAT_OK output) is equal to the V
 
 ![threshold voltages](https://i.imgur.com/6fwH95w.png)
 
-Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J2). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by a user programmable resistor divider.
+Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J2). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by a user programmable resistor divider according to the following equation:
 
 <img src="https://latex.codecogs.com/gif.latex?V\textsubscript{OUT}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(\frac{R\textsubscript{22}&space;&plus;&space;R\textsubscript{23}}{R\textsubscript{23}})" title="V\textsubscript{OUT} = V\textsubscript{BIAS} \times (\frac{R\textsubscript{22} + R\textsubscript{23}}{R\textsubscript{23}})" />
 
+Connector JP3 allows you to configure the behaviour of the buck converter output. According to the BQ25570 datasheet (`EHM\Datasheets\bq25570.pdf`), if you tie VOUT_EN to VSTOR, the buck converter is disabled when the voltage on VSTOR drops below the VBAT_UV condition. The buck converter continues to operate in pass (100% duty cycle) mode, passing the input voltage to the output, as long as VSTOR is greater than VBAT_UV and less than VOUT. However, it fails to make clear the true functionality of the VOUT_EN input. You see, when reading `EHM\Literature\sluuaa7a.pdf`, it becomes evident that connecting VOUT_EN to VBAT_OK makes it so that the buck converter is turned off when VSTOR < VBAT_OK (when VSTOR is decreasing) or if VSTOR < VBAT_OK_HYST (when VSTOR increases). Connecting VOUT_EN to GND turns off the buck converter entirely.
+
 ![vout conf](https://i.imgur.com/yBrZWuL.png)
 
-The `EHM\BQ25570_Design_Help_V1_3.xlsx` spreadsheet is a handy tool that calculates a set of resistor values that fits best within the operational constraints provided by you, the user. For your convenience I've provided you with some values that reflect a common scenario wherein a single cel Li-Ion battery or a dual cell NiMH battery are used as a storage element in conjunction with, e.g., a small solar cell (with an output voltage ≤ 3.5V) such as [this](https://www.banggood.com/0_36W-2V-42_548_53mm-Solar-Panel-Epoxy-Board-with-Wire-p-1369156.html?rmmds=search&cur_warehouse=CN) one (when space is limited) or [this](https://www.banggood.com/3_5V-250mA-0_8W-Mini-Epoxy-Solar-Panel-Photovoltaic-Panel-p-987778.html?rmmds=search&cur_warehouse=CN) one when device footprint is no issue.
+The `EHM\BQ25570_Design_Help_V1_3.xlsx` spreadsheet is a handy tool that calculates a set of resistor values that fits best within the operational constraints provided by you, the user. For your convenience I've provided you with some values that reflect a common scenario wherein a single cel Li-Ion battery or a dual cell NiMH battery are used as a storage element in conjunction with, e.g., a small solar cell (with an output voltage ≤ 3.5V) such as [this](https://www.banggood.com/0_36W-2V-42_548_53mm-Solar-Panel-Epoxy-Board-with-Wire-p-1369156.html?rmmds=search&cur_warehouse=CN) one or [this](https://www.gearbest.com/other-accessories/pp_009728526124.html) one (when space is limited) or [this](https://www.banggood.com/3_5V-250mA-0_8W-Mini-Epoxy-Solar-Panel-Photovoltaic-Panel-p-987778.html?rmmds=search&cur_warehouse=CN) one when device footprint is no issue.
 
 >**Note:** the MPPT percentage (40%) is just for demonstration purposes in this case. Solar panels work best when the MPPT percentage is set to approximately 80%.
 
+![design help](https://i.imgur.com/IIKtmSY.png)
+
+Choosing an appropriately sized solar panel and storage element (most likely a 3.7V battery) is not an easy feat and depends heavily on your use case. Luckily I've provided another handy spreadsheet (`EHM\bq25570SolarAppDesignExample_V1p3.xlsx`) which accepts a number of parameters and calculates the required size of your solar panel as well as the minum battery capacity required (given a nominal voltage). I've loaded the spreadsheet with some parameters that reflect the absolute worst case scenario for a sensor node that uses every possible function of the hardware (including chips other than the BQ25570) to repeatedly send a message every 60 seconds.
+
+>**Note:** seriously, even if you tried you wouldn't be able to design a **sensor** node setup with a worse performance than the one laid out in `EHM\bq25570SolarAppDesignExample_V1p3.xlsx`. Except maybe if you used IEEE 802.11b links or something funny like that.
+
 ![solar panel](https://i.imgur.com/ZaABeAV.png)
 
-![design help](https://i.imgur.com/IIKtmSY.png)
+![solar app](https://i.imgur.com/7qMZ8b3.png)
 
 All resistors are E96 series 1% resistors with an 0603 footprint. The following table provides a summary of the proposed configuration and the passive components required:
 
