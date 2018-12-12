@@ -153,7 +153,11 @@ That being said, certain requirements need to be met before the main boost charg
 
 The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) higher than VSTOR_CHGEN so that the main boost charger can operate. When the VSTOR voltage reaches VSTOR_CHGEN, the main boost charger starts up. Once the VSTOR pin voltage goes above VBAT_UV (1.95V) plus the VBAT_UV_HYST threshold (15mV), the VSTOR pin and VBAT pins are effectively shorted through an internal PMOS FET. The switch remains closed until the VSTOR pin voltage falls below the VBAT_UV threshold. The VBAT_UV threshold should be considered a fail safe to the system and the system load should be removed or reduced based on the user-configurable VBAT_OK threshold which should be set above the VBAT_UV threshold.
 
-To prevent rechargeable batteries from being exposed to excessive charging voltages and to prevent over charging a capacitive storage element, the over-voltage (VBAT_OV) threshold level must be set using external resistors. This is also the voltage value to which the charger will regulate the VSTOR/VBAT pin when the input provides sufficient power.
+To prevent rechargeable batteries from being exposed to excessive charging voltages and to prevent over charging a capacitive storage element, the over-voltage (VBAT_OV) threshold level must be set using external resistors (see following equation). This is also the voltage value to which the charger will regulate the VSTOR/VBAT pin when the input provides sufficient power. The VBAT_OV threshold when the battery voltage is rising is given by:
+
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OV}&space;=&space;\frac{3}{2}&space;\times&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{15}}{R\textsubscript{16}})" title="V\textsubscript{BAT, OV} = \frac{3}{2} \times V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{15}}{R\textsubscript{16}})" />
+
+The overvoltage threshold when battery voltage is decreasing is given by VBAT_OV minus VBAT_OV_HYST (24mV). Once the voltage at the battery exceeds the VBAT_OV threshold, the boost charger is disabled. The charger will start again once the battery voltage drops VBAT_OV_HYST.
 
 The charger allows the user to set a programmable voltage independent of the overvoltage and undervoltage settings to indicate whether the VSTOR voltage (and therefore the VBAT voltage when the PFET between the two pins is turned on) is at an acceptable level. When the battery voltage is decreasing the threshold is set by:
 
@@ -162,6 +166,8 @@ The charger allows the user to set a programmable voltage independent of the ove
 When the battery voltage is increasing, the threshold is set by:
 
 <img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK&space;(HYST)}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{18}&space;&plus;&space;R\textsubscript{19}}{R\textsubscript{17}})" title="V\textsubscript{BAT, OK (HYST)} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{18} + R\textsubscript{19}}{R\textsubscript{17}})" />
+
+The logic high level of this signal (i.e., the VBAT_OK output) is equal to the VSTOR voltage and the logic low level is GND. Figure 21 taken from `EHM\Datasheets\bq25570.pdf` shows the relative position of the various threshold voltages discussed so far.
 
 ![threshold voltages](https://i.imgur.com/6fwH95w.png)
 
