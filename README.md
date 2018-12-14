@@ -241,6 +241,22 @@ Therefore <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsub
 
 <img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}&space;=&space;267.5" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA} = 267.5" />
 
+>**Note:** calculating the current is now simply a matter of dividing a measurement obtained from the ADC by the known gain and shunt resistor values (in software).
+
+The output shunt resistor employs the same principles. However, according to `EHM\Datasheets\bq25570.pdf`, the maximum output current of the buck converter equals 110mA. Therefore, the following equation must hold true:
+
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V,&space;Max}&space;=&space;\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;110\:mA}" title="A\textsubscript{V, Max} = \frac{2.7\:V}{R\textsubscript{SHUNT} \times 110\:mA}" />
+
+Again, in all cases <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V,&space;Max}&space;\geq&space;A\textsubscript{V,&space;Min}" title="A\textsubscript{V, Max} \geq A\textsubscript{V, Min}" /> must hold true. By assuming the resolution to be an unknown variable x this comes down to:
+
+<img src="https://latex.codecogs.com/gif.latex?\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;110\:mA}&space;\geq&space;\frac{659\:\mu{V}}{R\textsubscript{SHUNT}&space;\times&space;x}" title="\frac{2.7\:V}{R\textsubscript{SHUNT} \times 110\:mA} \geq \frac{659\:\mu{V}}{R\textsubscript{SHUNT} \times x}" />
+
+<img src="https://latex.codecogs.com/gif.latex?x&space;\geq&space;26.9\:\mu{A}" title="x \geq 26.9\:\mu{A}" />
+
+Let's say a resolution of 30µA is adequate for our purposes and a shunt resistor of 100mΩ does the trick. Then, the voltage gain must be somewhere in the range of <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}&space;\in&space;[219.8,&space;245.5]" title="A\textsubscript{V} \in [219.8, 245.5]" />. Thus <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;\in&space;[8.8,&space;9.8]\:k\Omega" title="R\textsubscript{CSA} \in [8.8, 9.8]\:k\Omega" />. I strongly encourage the use of a 9.31kΩ 0.1% 0603 resistor like the one found in `EHM\Datasheets\era-3aeb9311v.pdf`. This offering from Panasonic is extremely precise. In that case the voltage gain equates to:
+
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}&space;=&space;232.75" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA} = 232.75" />
+
 ### Voltage Buffers
 
 ### Power Delivery
