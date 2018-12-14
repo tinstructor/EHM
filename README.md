@@ -145,7 +145,7 @@ Switching the MPPT percentage between 50% (VOC_SAMP = GND), 80% (VOC_SAMP = VBAT
 
 ![jumper](https://i.imgur.com/8uMYhUQ.png)
 
-![mppt conf](https://i.imgur.com/VKKGwCk.png)
+![mppt conf](https://i.imgur.com/Vjcr9gZ.png)
 
 That being said, certain requirements need to be met before the main boost charger (with the aforementioned impedance matching capabilities) is operational. More specifically, when VSTOR < VSTOR_CHGEN (= 1.8V) the IC operates in cold-start mode. The cold-start circuit is essentially an unregulated, hysteretic boost converter with lower efficiency compared to the main boost charger. None of the other features function during cold start operation.
 
@@ -177,7 +177,7 @@ Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also
 
 Connector JP1 allows you to configure the behaviour of the buck converter output. According to the BQ25570 datasheet (`EHM\Datasheets\bq25570.pdf`), if you tie VOUT_EN to VSTOR, the buck converter is disabled when the voltage on VSTOR drops below the VBAT_UV condition. The buck converter continues to operate in pass (100% duty cycle) mode, passing the input voltage to the output, as long as VSTOR is greater than VBAT_UV and less than VOUT. However, it fails to make clear the true functionality of the VOUT_EN input. You see, when reading `EHM\Literature\sluuaa7a.pdf`, it becomes evident that connecting VOUT_EN to VBAT_OK makes it so that the buck converter is turned off when VSTOR < VBAT_OK (when VSTOR is decreasing) or if VSTOR < VBAT_OK_HYST (when VSTOR increases). Connecting VOUT_EN to GND turns off the buck converter entirely.
 
-![vout conf](https://i.imgur.com/yBrZWuL.png)
+![vout conf](https://i.imgur.com/sTY698Q.png)
 
 The `EHM\BQ25570_Design_Help_V1_3.xlsx` spreadsheet is a handy tool that calculates a set of resistor values that fits best within the operational constraints provided by you, the user. For your convenience I've provided you with some values that reflect a common scenario wherein a single cel Li-Ion battery or a dual cell NiMH battery are used as a storage element in conjunction with, e.g., a small solar cell (with an output voltage ≤ 3.5V) such as [this](https://www.banggood.com/0_36W-2V-42_548_53mm-Solar-Panel-Epoxy-Board-with-Wire-p-1369156.html?rmmds=search&cur_warehouse=CN) one or [this](https://www.gearbest.com/other-accessories/pp_009728526124.html) one (when space is limited) or [this](https://www.banggood.com/3_5V-250mA-0_8W-Mini-Epoxy-Solar-Panel-Photovoltaic-Panel-p-987778.html?rmmds=search&cur_warehouse=CN) one when device footprint is no issue.
 
