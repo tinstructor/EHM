@@ -201,7 +201,45 @@ I strongly recommend you to read `EHM\Datasheets\bq25570.pdf` for additional des
 
 ### Current Sense Amplifiers
 
+If the purpose is to monitor both input and output power, you'd need to measure both input and output current (as well as voltage). Hence, a shunt resistor was added to both the input and output, each in combination with a MAX9934TAUA Current Sense Amplifier (CSA). This device amplifies the voltage drop across the shunt resistance before it may be measured by an Analog to Digital Converter (ADC). If I hadn’t use a CSA, the voltage difference would either be too small to measure or you'd need to make the shunt resistor very big, leading to unacceptable power losses.
 
+The MAX9934TAUA is an interesting CSA in that it behaves as a current-source with a transconductance <img src="https://latex.codecogs.com/gif.latex?\inline&space;g\textsubscript{m}&space;=&space;\frac{25\:\mu{A}}{mV}" title="g\textsubscript{m} = \frac{25\:\mu{A}}{mV}" />. Thus, by pulling its output to GND with a sufficiently large resistor (let's call it <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}" title="R\textsubscript{CSA}" /> for now) we are able to adjust the voltage gain <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}" title="A\textsubscript{V}" /> according to the following equation:
+
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA}" />
+
+If you'd use a Successive Approximation Register (SAR) ADC to measure the amplified voltage drop (i.e., VOUT of the CSA) you need to take the following remark (found in `EHM\Datasheet\max9934.pdf`) into consideration:
+
+> *"Since the MAX9934 is essentially a high-output impedance current-source, its output termination resistor \[<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}" title="R\textsubscript{CSA}" />\] acts like a source impedance \[<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{AIN}" title="R\textsubscript{AIN}" />\] when driving an ADC channel. Most SAR ADCs specify a maximum source resistance to avoid compromising the accuracy of their readings. Choose the output termination resistor such that it is less than that required by the ADC specification. If the output termination resistor is larger than the source resistance specified, the ADC internal sampling capacitor can momentarily load the amplifier output and cause a drop in the voltage reading.*
+>
+> *If the output termination resistor is larger than the source resistance specified, consider using a ceramic capacitor from ADC input to GND. This input capacitor supplies momentary charge to the internal ADC sampling capacitor, helping hold VOUT constant during the acquisition period."*
+>
+> **Maxim Integrated**
+
+Let's say you'd want to use an ADC with a resolution of 12 bits. At this resolution there are <img src="https://latex.codecogs.com/gif.latex?\inline&space;2^{12}-1&space;=&space;4095" title="2^{12}-1 = 4095" /> levels ranging from 0V to the VOUT of the buck converter (2.7V if you used the proposed configuration). The following equation shows how one could calculate the measured voltage given an output value x of the ADC:
+
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{MEASURED}&space;=&space;\frac{x}{2^{12}-1}&space;\times&space;V\textsubscript{OUT}&space;\approx&space;\frac{x}{4095}&space;\times&space;2.7\:V" title="V\textsubscript{MEASURED} = \frac{x}{2^{12}-1} \times V\textsubscript{OUT} \approx \frac{x}{4095} \times 2.7\:V" />
+
+In our case, the smallest measurable voltage delta (by the ADC) equals <img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{2.7\:V}{4095}&space;\approx&space;659\:\mu{V}" title="\frac{2.7\:V}{4095} \approx 659\:\mu{V}" />. Now, assume we want to measure the current through the shunt resistor with a resolution of 50µA, then the smallest possible voltage gain may be obtained from the following equation:
+
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V,&space;Min}&space;=&space;\frac{659\:\mu{V}}{R\textsubscript{SHUNT}&space;\times&space;50\:\mu{A}}" title="A\textsubscript{V, Min} = \frac{659\:\mu{V}}{R\textsubscript{SHUNT} \times 50\:\mu{A}}" />
+
+However since the ADC input only ranges to VOUT of the buck converter, there's also a maximum possible voltage gain. Let's say the maximum input current of the boost charger equals 200mA (which is well within the specs stated in `EHM\Datasheets\bq25570.pdf`), then the following equation puts an upper limit to the voltage gain:
+
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V,&space;Max}&space;=&space;\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;200\:mA}" title="A\textsubscript{V, Max} = \frac{2.7\:V}{R\textsubscript{SHUNT} \times 200\:mA}" />
+
+>**Note:** you could easily calculate that in fact, the shunt resistor is not the limiting factor when it comes to resolution. In all cases <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V,&space;Max}&space;\geq&space;A\textsubscript{V,&space;Min}" title="A\textsubscript{V, Max} \geq A\textsubscript{V, Min}" /> must hold true. By assuming the resolution is unknown this comes down to:
+>
+> <img src="https://latex.codecogs.com/gif.latex?\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;200\:mA}&space;\geq&space;\frac{659\:\mu{V}}{R\textsubscript{SHUNT}&space;\times&space;x}" title="\frac{2.7\:V}{R\textsubscript{SHUNT} \times 200\:mA} \geq \frac{659\:\mu{V}}{R\textsubscript{SHUNT} \times x}" />
+>
+> <img src="https://latex.codecogs.com/gif.latex?x&space;\geq&space;48.8\:\mu{A}" title="x \geq 48.8\:\mu{A}" />
+
+A trade-off now presents itself. The larger the shunt resistance, the lower the voltage gain and the less influence small (tolerance) deviations have on the measurement. However, a larger shunt resistor also equates to more power loss. Let's say that a shunt resistor of 50mΩ does the trick. Assuming the measurement resolution equals 50µA, the voltage gain must be somewhere in the range of <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}&space;\in&space;[263.7,&space;270]" title="A\textsubscript{V} \in [263.7, 270]" />. The corresponding output termination resistor (<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;=&space;R\textsubscript{AIN}" title="R\textsubscript{CSA} = R\textsubscript{AIN}" />) can then be calculated as follows:
+
+<img src="https://latex.codecogs.com/gif.latex?R\textsubscript{CSA}&space;=&space;\frac{A\textsubscript{V}}{g\textsubscript{m}}" title="R\textsubscript{CSA} = \frac{A\textsubscript{V}}{g\textsubscript{m}}" />
+
+Therefore <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;\in&space;[10.6,&space;10.8]\:k\Omega" title="R\textsubscript{CSA} \in [10.6, 10.8]\:k\Omega" />. I strongly encourage the use of a 10.7kΩ 0.1% 0603 resistor like the one found in `EHM\Datasheets\era-3aeb1072v.pdf`. This offering from Panasonic is extremely precise. In that case the voltage gain equates to:
+
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}&space;=&space;267.5" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA} = 267.5" />
 
 ### Voltage Buffers
 
