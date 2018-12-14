@@ -2781,6 +2781,11 @@ design rules under a new name.</description>
 <attribute name="TE_PURCHASE_URL" value="https://www.te.com/usa-en/product-282834-2.html?te_bu=Cor&amp;te_type=disp&amp;te_campaign=seda_glo_cor-seda-global-disp-prtnr-fy19-seda-model-bom-cta_sma-317_1&amp;elqCampaignId=32493" x="72" y="37" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="67.49363125" y="40.00425" size="0.81395" layer="27" rot="R270"/>
 </element>
+<element name="R24" library="rcl" library_urn="urn:adsk.eagle:library:334" package="R0603" package3d_urn="urn:adsk.eagle:package:23555/2" value="DNP" x="64" y="34" smashed="yes" rot="R270">
+<attribute name="NAME" x="62.865" y="32.365" size="1.27" layer="25" rot="R90"/>
+<attribute name="SPICEPREFIX" value="R" x="64" y="34" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="62.095" y="34.635" size="1.27" layer="27" rot="R270"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -3786,10 +3791,10 @@ design rules under a new name.</description>
 </signal>
 <signal name="SW">
 <contactref element="J7" pad="1"/>
-<contactref element="Q2" pad="2"/>
-<wire x1="64" y1="29" x2="66.5" y2="26.5" width="0.508" layer="1"/>
-<wire x1="64" y1="40.095" x2="64" y2="29" width="0.508" layer="1"/>
-<wire x1="66.5" y1="26.5" x2="69" y2="26.5" width="0.508" layer="1"/>
+<contactref element="R24" pad="2"/>
+<wire x1="69" y1="26.5" x2="66.5" y2="26.5" width="0.508" layer="1"/>
+<wire x1="66.5" y1="26.5" x2="64" y2="29" width="0.508" layer="1"/>
+<wire x1="64" y1="29" x2="64" y2="33.15" width="0.508" layer="1"/>
 </signal>
 <signal name="N$21">
 <contactref element="Q1" pad="C"/>
@@ -3875,6 +3880,11 @@ design rules under a new name.</description>
 <contactref element="Q2" pad="3"/>
 <wire x1="65.27" y1="42" x2="65.27" y2="45.88" width="0.6096" layer="1"/>
 <wire x1="65.27" y1="45.88" x2="65" y2="46.15" width="0.6096" layer="1"/>
+</signal>
+<signal name="N$19">
+<contactref element="R24" pad="1"/>
+<contactref element="Q2" pad="2"/>
+<wire x1="64" y1="34.85" x2="64" y2="40.095" width="0.508" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
