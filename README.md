@@ -133,13 +133,13 @@ According to the design principles and other useful information laid out in `EHM
 >
 > **Texas Instruments**
 
-In order to do this, the capabilities of the BQ25570 are twofold. First of all, it contains a boost charger whose intended purpose is to boost the low voltage output of harvesters such as small solar cells or a Thermo-Electric Generator (TEG) (connected to J3) to a constant voltage level that is sufficiently high to charge a storage element connected to the battery terminal J4. It does this as efficiently as possible by means of a mechanism called Maximum Powerpoint Tracking (MPPT). The purpose of MPPT is to match the input impedance of the boost charger to the output impedance of the energy harvester which in turn ensures a maximum transfer of power.
+In order to do this, the capabilities of the BQ25570 are twofold. First of all, it contains a boost charger whose intended purpose is to boost the low voltage output of harvesters such as small solar cells or a Thermo-Electric Generator (TEG) (connected to J2) to a constant voltage level that is sufficiently high to charge a storage element connected to the battery terminal J4. It does this as efficiently as possible by means of a mechanism called Maximum Powerpoint Tracking (MPPT). The purpose of MPPT is to match the input impedance of the boost charger to the output impedance of the energy harvester which in turn ensures a maximum transfer of power.
 
 >**Note:** if you want to know more about how MPPT works I suggest you have a look at `EHM\Literature\erbay2014.pdf` and `EHM\Literature\kong2012.pdf`.
 
 More specifically, in this case, the integrated MPPT block continuously measures a certain user configurable percentage (i.e., the MPPT percentage) of the energy harvester's open circuit voltage and uses this information to control the switching frequency of the boost converter to match its input impedance to be equal to the harvester's output impedance, thus assuring maximum power transfer. Choosing the MPPT percentage depends heavily on the type of energy harvesting device. If its output impedance is purely resistive, setting the MPPT percentage to 50% (VOC_SAMP = GND) ensures maximum power transfer. However, the capacitive nature of a solar cell's output impedance requires an MPPT percentage closer to 80% (VOC_SAMP = VBAT). For your convenience I've also added the possibility to set a custom MPPT percentage by means of a resistor divider consisting of (R20 + R22) and R23.
 
-<img src="https://latex.codecogs.com/gif.latex?MPPT\textsubscript{custom}&space;=&space;\frac{R\textsubscript{12}&space;&plus;&space;R\textsubscript{13}}{R\textsubscript{12}&space;&plus;&space;R\textsubscript{13}&space;&plus;&space;R\textsubscript{14}}&space;\times&space;100\:\%" title="MPPT\textsubscript{custom} = \frac{R\textsubscript{12} + R\textsubscript{13}}{R\textsubscript{12} + R\textsubscript{13} + R\textsubscript{14}} \times 100\:\%" />
+<img src="https://latex.codecogs.com/gif.latex?MPPT\textsubscript{custom}&space;=&space;\frac{R\textsubscript{20}&space;&plus;&space;R\textsubscript{22}}{R\textsubscript{20}&space;&plus;&space;R\textsubscript{22}&space;&plus;&space;R\textsubscript{23}}&space;\times&space;100\:\%" title="MPPT\textsubscript{custom} = \frac{R\textsubscript{20} + R\textsubscript{22}}{R\textsubscript{20} + R\textsubscript{22} + R\textsubscript{23}} \times 100\:\%" />
 
 Switching the MPPT percentage between 50% (VOC_SAMP = GND), 80% (VOC_SAMP = VBAT) or a custom value can be done by setting a jumper (see picture below) to the corresponding position on JP1. The same connector (JP1) also provides the ability to either enable or disable the entire chip by tying the NEN input of the IC to GND or VBAT respectively.
 
@@ -155,27 +155,27 @@ The cold start circuit's goal is to charge the voltage on CSTOR (i.e., VSTOR) hi
 
 To prevent rechargeable batteries from being exposed to excessive charging voltages and to prevent over charging a capacitive storage element, the over-voltage (VBAT_OV) threshold level must be set using external resistors (see following equation). This is also the voltage value to which the charger will regulate the VSTOR/VBAT pin when the input provides sufficient power. The VBAT_OV threshold when the battery voltage is rising is given by:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OV}&space;=&space;\frac{3}{2}&space;\times&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{15}}{R\textsubscript{16}})" title="V\textsubscript{BAT, OV} = \frac{3}{2} \times V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{15}}{R\textsubscript{16}})" />
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OV}&space;=&space;\frac{3}{2}&space;\times&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{4}}{R\textsubscript{5}})" title="V\textsubscript{BAT, OV} = \frac{3}{2} \times V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{4}}{R\textsubscript{5}})" />
 
 The overvoltage threshold when battery voltage is decreasing is given by VBAT_OV minus VBAT_OV_HYST (24mV). Once the voltage at the battery exceeds the VBAT_OV threshold, the boost charger is disabled. The charger will start again once the battery voltage drops VBAT_OV_HYST.
 
 The charger allows the user to set a programmable voltage independent of the overvoltage and undervoltage settings to indicate whether the VSTOR voltage (and therefore the VBAT voltage when the PFET between the two pins is turned on) is at an acceptable level. When the battery voltage is decreasing the threshold is set by:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{19}}{R\textsubscript{17}})" title="V\textsubscript{BAT, OK} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{19}}{R\textsubscript{17}})" />
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{10}}{R\textsubscript{6}})" title="V\textsubscript{BAT, OK} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{10}}{R\textsubscript{6}})" />
 
 When the battery voltage is increasing, the threshold is set by:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK&space;(HYST)}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{18}&space;&plus;&space;R\textsubscript{19}}{R\textsubscript{17}})" title="V\textsubscript{BAT, OK (HYST)} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{18} + R\textsubscript{19}}{R\textsubscript{17}})" />
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK&space;(HYST)}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{9}&space;&plus;&space;R\textsubscript{10}}{R\textsubscript{6}})" title="V\textsubscript{BAT, OK (HYST)} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{9} + R\textsubscript{10}}{R\textsubscript{6}})" />
 
 The logic high level of this signal (i.e., the VBAT_OK output) is equal to the VSTOR voltage and the logic low level is GND. Figure 21 taken from `EHM\Datasheets\bq25570.pdf` shows the relative position of the various threshold voltages discussed so far.
 
 ![threshold voltages](https://i.imgur.com/6fwH95w.png)
 
-Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J2). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by a user programmable resistor divider according to the following equation:
+Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also contains a buck converter. The buck converter input is internally connected to VSTOR and steps the VSTOR voltage down to a lower regulated voltage at the OUT connector (J1 and J3). It employs pulse frequency modulation (PFM) control to regulate the voltage close to the desired reference voltage. The voltage regulated at the OUT pin is set by a user programmable resistor divider according to the following equation:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{OUT}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(\frac{R\textsubscript{22}&space;&plus;&space;R\textsubscript{23}}{R\textsubscript{23}})" title="V\textsubscript{OUT} = V\textsubscript{BIAS} \times (\frac{R\textsubscript{22} + R\textsubscript{23}}{R\textsubscript{23}})" />
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{OUT}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(\frac{R\textsubscript{12}&space;&plus;&space;R\textsubscript{13}}{R\textsubscript{13}})" title="V\textsubscript{OUT} = V\textsubscript{BIAS} \times (\frac{R\textsubscript{12} + R\textsubscript{13}}{R\textsubscript{13}})" />
 
-Connector JP3 allows you to configure the behaviour of the buck converter output. According to the BQ25570 datasheet (`EHM\Datasheets\bq25570.pdf`), if you tie VOUT_EN to VSTOR, the buck converter is disabled when the voltage on VSTOR drops below the VBAT_UV condition. The buck converter continues to operate in pass (100% duty cycle) mode, passing the input voltage to the output, as long as VSTOR is greater than VBAT_UV and less than VOUT. However, it fails to make clear the true functionality of the VOUT_EN input. You see, when reading `EHM\Literature\sluuaa7a.pdf`, it becomes evident that connecting VOUT_EN to VBAT_OK makes it so that the buck converter is turned off when VSTOR < VBAT_OK (when VSTOR is decreasing) or if VSTOR < VBAT_OK_HYST (when VSTOR increases). Connecting VOUT_EN to GND turns off the buck converter entirely.
+Connector JP1 allows you to configure the behaviour of the buck converter output. According to the BQ25570 datasheet (`EHM\Datasheets\bq25570.pdf`), if you tie VOUT_EN to VSTOR, the buck converter is disabled when the voltage on VSTOR drops below the VBAT_UV condition. The buck converter continues to operate in pass (100% duty cycle) mode, passing the input voltage to the output, as long as VSTOR is greater than VBAT_UV and less than VOUT. However, it fails to make clear the true functionality of the VOUT_EN input. You see, when reading `EHM\Literature\sluuaa7a.pdf`, it becomes evident that connecting VOUT_EN to VBAT_OK makes it so that the buck converter is turned off when VSTOR < VBAT_OK (when VSTOR is decreasing) or if VSTOR < VBAT_OK_HYST (when VSTOR increases). Connecting VOUT_EN to GND turns off the buck converter entirely.
 
 ![vout conf](https://i.imgur.com/yBrZWuL.png)
 
@@ -195,7 +195,7 @@ Choosing an appropriately sized solar panel and storage element (most likely a 3
 
 All resistors are E96 series 1% resistors with an 0603 footprint. The following table provides a summary of the proposed configuration and the passive components required:
 
-![tables](https://i.imgur.com/t1auMWZ.png)
+![tables](https://i.imgur.com/BjNiwjs.png)
 
 I strongly recommend you to read `EHM\Datasheets\bq25570.pdf` for additional design considerations, e.g., regarding the appropriate sizing of several capacitors, etc.
 
