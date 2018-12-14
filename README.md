@@ -261,7 +261,7 @@ Let's say a resolution of 30µA is adequate for our purposes and a shunt resisto
 
 ### Voltage Buffers
 
-
+`EHM\Datasheets\max9620.pdf` `EHM\Literature\capacitive_loading.pdf` `EHM\Datasheets\crcw060310m0dheap.pdf`
 
 ### Power Delivery
 
