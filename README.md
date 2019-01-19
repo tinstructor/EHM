@@ -251,13 +251,11 @@ Let's say a resolution of 110µA is adequate for our purposes and a shunt resist
 
 >**Note:** due to footprint requirements, the only possible shunt resistors are specified in `EHM\Datasheet\y14870rxxx00b9r.pdf`. For example, in the above case, you'd need to order the Y14870R10000B9R and Y14870R05000B9R variants.
 
-### Voltage Buffers
+### Voltage Buffer
 
-The input resistance and capacitance of an ADC input are typically chosen to accomodate most common scenarios. However, when dealing with particularly small currents and voltages it is common to buffer these inputs for all sorts of reasons. I went with the `EHM\Datasheets\max9620.pdf` op-amps because they provide unity gain stability up to capacitive loads of 400pF. This is important because the input of (SAR) ADCs tends to be capacitive. Larger capacitive loads may be supported by adding a resistor in series with the buffer output as explained in `EHM\Literature\capacitive_loading.pdf`.
+The input resistance and capacitance of an ADC input are typically chosen to accomodate most common scenarios. However, when dealing with particularly small currents and voltages it is common to buffer these inputs for all sorts of reasons. I went with the `EHM\Datasheets\opa314.pdf` op-amp.
 
 Because the battery and input voltage may be greater than the buffer and ADC supply voltage, I've added the possibility to divide the buffer input voltages by means of a resistor divider. It is advisable to go with large resistance values so as to minimize power losses. Something like the 10MΩ 0.5% 0603 resistors from `EHM\Datasheets\crcw060310m0dheap.pdf` are an exellent choice.
-
->**Note:** in future releases the buffers shall be replaced by an active low-pass filter with unity gain in order to combat aliasing.
 
 ### Power Delivery
 
