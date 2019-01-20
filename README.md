@@ -86,7 +86,7 @@ These days, when I order relatively small dual-layer PCB's for prototyping purpo
 
 >**Note:** choosing a lead-free finish will add €5.30 to the total price. However, since most hobbyist solder with leaded solder anyway, you must ask yourself whether shelling out extra money for a small batch of prototypes is worth it.
 
-![jlcpcb](https://i.imgur.com/1quGmoQ.png)
+![jlcpcb](https://i.imgur.com/yiaGQXf.png)
 
 A great way to save some cost in the long run while making your job easier is to use a stencil printer like the [CYBRES SP2421](https://www.tindie.com/products/CYBRES/cybres-sp2421-stencil-printer/) or the [NeoDen PM3040](https://printtec.nl/contents/nl/d361.html). The purpose of a stencil printer will become clear in the section on [Soldering](#soldering). What you need to know at this stage is that there are two types of (manual) stencil printers: while the SP2421 requires no stencil frame (where the PM3040 does) it does require a set of precision cut holes in your stencil. If you've got the capabilities to cut these holes and do it precisely, it's a great way to save some money on both the printer itself as well as the additional shipping costs associated with framed stencils.
 
