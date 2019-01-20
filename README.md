@@ -17,7 +17,7 @@ An energy harvester with advanced monitoring capabilities.
   - [Device Operation](#device-operation)
     - [Energy Harvester](#energy-harvester)
     - [Current Sense Amplifiers](#current-sense-amplifiers)
-    - [Voltage Buffer](#voltage-buffers)
+    - [Voltage Buffer](#voltage-buffer)
     - [Power Delivery](#power-delivery)
     - [ADC](#adc)
     - [Solder Bridges](#solder-bridges)
