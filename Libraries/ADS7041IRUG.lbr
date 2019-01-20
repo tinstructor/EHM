@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
@@ -54,7 +54,7 @@
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
@@ -64,7 +64,7 @@
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
-<layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
@@ -73,66 +73,67 @@
 </layers>
 <library>
 <packages>
-<package name="SC70-5" urn="urn:adsk.eagle:footprint:3859/1">
-<description>&lt;b&gt;5-Lead Thin Shrink Small Outline Transistor Package&lt;/b&gt;&lt;p&gt;
-Source: http://www.analog.com/static/imported-files/data_sheets/AD8519_8529.pdf</description>
-<wire x1="1.022" y1="0.585" x2="1.022" y2="-0.585" width="0.1524" layer="21"/>
-<wire x1="1.022" y1="-0.585" x2="-1.022" y2="-0.585" width="0.1524" layer="51"/>
-<wire x1="-1.022" y1="-0.585" x2="-1.022" y2="0.585" width="0.1524" layer="21"/>
-<wire x1="-1.022" y1="0.585" x2="1.022" y2="0.585" width="0.1524" layer="51"/>
-<wire x1="-0.222" y1="0.585" x2="0.222" y2="0.585" width="0.1524" layer="21"/>
-<smd name="1" x="-0.65" y="-0.95" dx="0.35" dy="0.8" layer="1" stop="no" cream="no"/>
-<smd name="2" x="0" y="-0.95" dx="0.35" dy="0.8" layer="1" stop="no" cream="no"/>
-<smd name="3" x="0.65" y="-0.95" dx="0.35" dy="0.8" layer="1" stop="no" cream="no"/>
-<smd name="4" x="0.65" y="0.95" dx="0.35" dy="0.8" layer="1" stop="no" cream="no"/>
-<smd name="5" x="-0.65" y="0.95" dx="0.35" dy="0.8" layer="1" stop="no" cream="no"/>
-<text x="-1.397" y="1.524" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.651" y="-2.794" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.15" y1="-1.2" x2="0.15" y2="-0.625" layer="51"/>
-<rectangle x1="-0.8" y1="-1.2" x2="-0.5" y2="-0.625" layer="51"/>
-<rectangle x1="0.5" y1="-1.2" x2="0.8" y2="-0.625" layer="51"/>
-<rectangle x1="0.5" y1="0.625" x2="0.8" y2="1.2" layer="51" rot="R180"/>
-<rectangle x1="-0.8" y1="0.625" x2="-0.5" y2="1.2" layer="51" rot="R180"/>
-<rectangle x1="-0.875" y1="-1.4" x2="-0.425" y2="-0.5" layer="29"/>
-<rectangle x1="-0.8" y1="-1.325" x2="-0.5" y2="-0.575" layer="31"/>
-<rectangle x1="-0.225" y1="-1.4" x2="0.225" y2="-0.5" layer="29"/>
-<rectangle x1="-0.15" y1="-1.325" x2="0.15" y2="-0.575" layer="31"/>
-<rectangle x1="0.425" y1="-1.4" x2="0.875" y2="-0.5" layer="29"/>
-<rectangle x1="0.5" y1="-1.325" x2="0.8" y2="-0.575" layer="31"/>
-<rectangle x1="0.425" y1="0.5" x2="0.875" y2="1.4" layer="29" rot="R180"/>
-<rectangle x1="0.5" y1="0.575" x2="0.8" y2="1.325" layer="31" rot="R180"/>
-<rectangle x1="-0.875" y1="0.5" x2="-0.425" y2="1.4" layer="29" rot="R180"/>
-<rectangle x1="-0.8" y1="0.575" x2="-0.5" y2="1.325" layer="31" rot="R180"/>
+<package name="QFN50P150X150X40-8N">
+<text x="-1.20851875" y="-1.33796875" size="0.8128" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.207840625" y="1.326309375" size="0.8128" layer="25">&gt;NAME</text>
+<circle x="-1.505" y="0.77" radius="0.1" width="0.2" layer="21"/>
+<circle x="-0.362" y="0.4" radius="0.1" width="0.2" layer="51"/>
+<wire x1="0.75" y1="-0.75" x2="-0.75" y2="-0.75" width="0.127" layer="51"/>
+<wire x1="0.75" y1="0.75" x2="-0.75" y2="0.75" width="0.127" layer="51"/>
+<wire x1="0.75" y1="-0.75" x2="0.75" y2="0.75" width="0.127" layer="51"/>
+<wire x1="-0.75" y1="-0.75" x2="-0.75" y2="0.75" width="0.127" layer="51"/>
+<wire x1="0.75" y1="-0.85" x2="0.4" y2="-0.85" width="0.127" layer="21"/>
+<wire x1="0.75" y1="0.85" x2="0.4" y2="0.85" width="0.127" layer="21"/>
+<wire x1="-0.75" y1="-0.85" x2="-0.4" y2="-0.85" width="0.127" layer="21"/>
+<wire x1="-0.75" y1="0.85" x2="-0.4" y2="0.85" width="0.127" layer="21"/>
+<wire x1="-1.2" y1="-1.2" x2="1.2" y2="-1.2" width="0.05" layer="39"/>
+<wire x1="-1.2" y1="1.2" x2="1.2" y2="1.2" width="0.05" layer="39"/>
+<wire x1="-1.2" y1="-1.2" x2="-1.2" y2="1.2" width="0.05" layer="39"/>
+<wire x1="1.2" y1="-1.2" x2="1.2" y2="1.2" width="0.05" layer="39"/>
+<smd name="4" x="0" y="-0.65" dx="0.6" dy="0.3" layer="1" roundness="25" rot="R90"/>
+<smd name="8" x="0" y="0.65" dx="0.6" dy="0.3" layer="1" roundness="25" rot="R90"/>
+<smd name="1" x="-0.675" y="0.5" dx="0.55" dy="0.25" layer="1" roundness="25"/>
+<smd name="2" x="-0.675" y="0" dx="0.55" dy="0.2" layer="1" roundness="25"/>
+<smd name="3" x="-0.675" y="-0.5" dx="0.55" dy="0.25" layer="1" roundness="25"/>
+<smd name="5" x="0.675" y="-0.5" dx="0.55" dy="0.25" layer="1" roundness="25"/>
+<smd name="6" x="0.675" y="0" dx="0.55" dy="0.2" layer="1" roundness="25"/>
+<smd name="7" x="0.675" y="0.5" dx="0.55" dy="0.25" layer="1" roundness="25"/>
 </package>
 </packages>
 <symbols>
-<symbol name="MAX9620">
-<wire x1="-10.16" y1="10.16" x2="10.16" y2="10.16" width="0.254" layer="94"/>
-<text x="-10.16" y="11.176" size="1.778" layer="95">&gt;NAME</text>
-<text x="-10.16" y="-12.954" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="VCC+" x="15.24" y="7.62" length="middle" direction="pwr" rot="R180"/>
-<pin name="OUT" x="15.24" y="-7.62" length="middle" direction="out" rot="R180"/>
-<wire x1="10.16" y1="10.16" x2="10.16" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-10.16" x2="-10.16" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="-10.16" y1="-10.16" x2="-10.16" y2="10.16" width="0.254" layer="94"/>
-<pin name="IN+" x="-15.24" y="7.62" length="middle" direction="in"/>
-<pin name="VCC-" x="-15.24" y="0" length="middle" direction="pwr"/>
-<pin name="IN-" x="-15.24" y="-7.62" length="middle" direction="in"/>
+<symbol name="ADS7041">
+<pin name="!CS!" x="-17.78" y="5.08" length="middle" direction="in"/>
+<pin name="SDO" x="-17.78" y="0" length="middle" direction="out"/>
+<pin name="SCLK" x="-17.78" y="-5.08" length="middle" direction="in" function="clk"/>
+<pin name="AINM" x="0" y="15.24" length="middle" direction="in" rot="R270"/>
+<pin name="DVDD" x="0" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="AINP" x="17.78" y="5.08" length="middle" direction="in" rot="R180"/>
+<pin name="AVDD" x="17.78" y="0" length="middle" direction="pwr" rot="R180"/>
+<pin name="GND" x="17.78" y="-5.08" length="middle" direction="pwr" rot="R180"/>
+<wire x1="-12.7" y1="10.16" x2="12.7" y2="10.16" width="0.254" layer="94"/>
+<wire x1="12.7" y1="10.16" x2="12.7" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-10.16" x2="-12.7" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-10.16" x2="-12.7" y2="10.16" width="0.254" layer="94"/>
+<text x="2.54" y="10.922" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.54" y="-12.7" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="MAX9620" prefix="U">
+<deviceset name="ADS7041IRUGR" prefix="U">
 <gates>
-<gate name="G$1" symbol="MAX9620" x="0" y="0"/>
+<gate name="G$1" symbol="ADS7041" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="SC70-5">
+<device name="" package="QFN50P150X150X40-8N">
 <connects>
-<connect gate="G$1" pin="IN+" pad="1"/>
-<connect gate="G$1" pin="IN-" pad="3"/>
-<connect gate="G$1" pin="OUT" pad="4"/>
-<connect gate="G$1" pin="VCC+" pad="5"/>
-<connect gate="G$1" pin="VCC-" pad="2"/>
+<connect gate="G$1" pin="!CS!" pad="1"/>
+<connect gate="G$1" pin="AINM" pad="8"/>
+<connect gate="G$1" pin="AINP" pad="7"/>
+<connect gate="G$1" pin="AVDD" pad="6"/>
+<connect gate="G$1" pin="DVDD" pad="4"/>
+<connect gate="G$1" pin="GND" pad="5"/>
+<connect gate="G$1" pin="SCLK" pad="3"/>
+<connect gate="G$1" pin="SDO" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -143,11 +144,4 @@ Source: http://www.analog.com/static/imported-files/data_sheets/AD8519_8529.pdf<
 </devicesets>
 </library>
 </drawing>
-<compatibility>
-<note version="8.3" severity="warning">
-Since Version 8.3, EAGLE supports URNs for individual library
-assets (packages, symbols, and devices). The URNs of those assets
-will not be understood (or retained) with this version.
-</note>
-</compatibility>
 </eagle>

@@ -17,8 +17,10 @@ An energy harvester with advanced monitoring capabilities.
   - [Device Operation](#device-operation)
     - [Energy Harvester](#energy-harvester)
     - [Current Sense Amplifiers](#current-sense-amplifiers)
-    - [Voltage Buffers](#voltage-buffers)
+    - [Voltage Buffer](#voltage-buffer)
     - [Power Delivery](#power-delivery)
+    - [ADC](#adc)
+    - [Solder Bridges](#solder-bridges)
   - [License](#license)
 
 <!-- /TOC -->
@@ -38,7 +40,7 @@ $ git config --global user.name "John Doe"
 $ gif config --global user.email "john.doe@example.com"
 ```
 
-Next up, enter the following command to clone the repository into the folder in which you opened the git bash terminal. Choose your location conveniently, for example `C:\Users\<username>\Documents\eagle\repos` might be a good place.
+Next up, enter the following command to clone the repository into the folder in which you opened the git bash terminal. Choose your location conveniently, for example `C:\Users\<username>\Documents\EAGLE\repos` might be a good place.
 
 ```bash
 $ git clone https://github.com/tinstructor/EHM.git
@@ -82,11 +84,11 @@ After browsing the file explorer and choosing the appropriate CAM file, all you 
 
 Now, when it comes to ordering PCB's there are a stupid amount of manufacturers out there and they're all claiming some perceived advantage over their competitors. Let me tell you, for the most part it's all marketing b\*llsh\*t. Which manufacturer you choose typically depends on price, manufacturing capabilities and how fast they can deliver. For hobbyists like you and me, the latter is typically of less importance while we tend to focuss more on low pricing.
 
-These days, when I order relatively small dual-layer PCB's for prototyping purposes I'll typically order from [JLCPCB](https://jlcpcb.com/). For the price their manufacturing capabilities and quality are outstanding. In fact, you'll have a hard time finding better prices regardless off  manufacturing capabilities. I mean, €7.05 (before shipping) for 10 PCB's and a stencil is somewhat unreal.
+These days, when I order relatively small dual-layer PCB's for prototyping purposes I'll typically order from [JLCPCB](https://jlcpcb.com/). For the price their manufacturing capabilities and quality are outstanding. In fact, you'll have a hard time finding better prices regardless off  manufacturing capabilities. I mean, €7.06 (before shipping) for 10 PCB's and a stencil is somewhat unreal.
 
->**Note:** choosing a lead-free finish will add €5.27 to the total price. However, since most hobbyist solder with leaded solder anyway, you must ask yourself whether shelling out extra money for a small batch of prototypes is worth it.
+>**Note:** choosing a lead-free finish will add €5.30 to the total price. However, since most hobbyist solder with leaded solder anyway, you must ask yourself whether shelling out extra money for a small batch of prototypes is worth it.
 
-![jlcpcb](https://i.imgur.com/n989hVG.png)
+![jlcpcb](https://i.imgur.com/yiaGQXf.png)
 
 A great way to save some cost in the long run while making your job easier is to use a stencil printer like the [CYBRES SP2421](https://www.tindie.com/products/CYBRES/cybres-sp2421-stencil-printer/) or the [NeoDen PM3040](https://printtec.nl/contents/nl/d361.html). The purpose of a stencil printer will become clear in the section on [Soldering](#soldering). What you need to know at this stage is that there are two types of (manual) stencil printers: while the SP2421 requires no stencil frame (where the PM3040 does) it does require a set of precision cut holes in your stencil. If you've got the capabilities to cut these holes and do it precisely, it's a great way to save some money on both the printer itself as well as the additional shipping costs associated with framed stencils.
 
@@ -100,11 +102,11 @@ First of all, let me state that sourcing components for absolute bottom dollar (
 
 Since the component selection on LCSC is somewhat limited you could go to places like [Mouser](https://www.mouser.com/) for the miscellaneous stuff like the BQ25570RGRR energy harvesting IC and the MAX9934TAUA+ current sense amplifier.
 
-Anyway, at the time of writing this, I wasn't sure yet as to which type of energy I'd be harvesting (solar, thermal, ...) so I couldn't really give you a Bill Of Materials (BOM). However, since most critical components are marked in the schematic with their full partname I'm sure you'll have no trouble obtaining the correct components if you really wanted to. My advice would be to always make sure you get the part with the correct footprint.
+~~Anyway, at the time of writing this, I wasn't sure yet as to which type of energy I'd be harvesting (solar, thermal, ...) so I couldn't really give you a Bill Of Materials (BOM).~~ However, since most critical components are marked in the schematic with their full partname I'm sure you'll have no trouble obtaining the correct components if you really wanted to. My advice would be to always make sure you get the part with the correct footprint.
 
 >**Note:** make sure to order y14870rxxx00b9r type current resistors with a CSM2512 footprint as illustrated in `EHM\Datasheets\y14870rxxx00b9r.pdf`.
 
-Oh yeah and before I forget, sites like [Banggood](https://www.banggood.com/) are amazing for getting pre-assembled cables like [this](https://www.banggood.com/10Pcs-Mini-Micro-JST-2_0-PH-6Pin-Connector-Plug-With-30cm-Wires-Cables-p-1147297.html) one and [this](https://www.banggood.com/100Pcs-Mini-Micro-JST-2_0-PH-2Pin-Connector-Plug-With-120mm-Wires-Cables-p-1147298.html) one. What's more, Banggood typically charges completely nothing for shipping. The only downside is that stuff will take some weeks to arrive at your doorstep. That's what you get for being so cheap.
+Oh yeah and before I forget, sites like [Banggood](https://www.banggood.com/) are amazing for getting pre-assembled cables like [this](https://www.banggood.com/100Pcs-Mini-Micro-JST-1_0mm-SH-2-Pin-Connector-Plug-With-Wires-Cables-150mm-p-1170285.html) one and [this](https://www.banggood.com/20Pcs-Mini-Micro-JST-1_0mm-SH-6-Pin-Connector-Plug-With-Wires-Cables-150mm-p-1170259.html) one. What's more, Banggood typically charges completely nothing for shipping. The only downside is that stuff will take some weeks to arrive at your doorstep. That's what you get for being so cheap.
 
 ### Soldering
 
@@ -129,7 +131,7 @@ After putting solder paste on your board and carefully sticking the component to
 
 According to the design principles and other useful information laid out in `EHM\Datasheets\bq25570.pdf` and `EHM\Literature\sluuaa7a.pdf`, the BQ25570 IC allows for a number of configurations to be made pertaining to its operation. But before we can start you might be wondering, what exactly is the function of this chip? The following quote should start to make things somewhat clear:
 
-> *"The bq25570 device is a highly integrated energy harvesting Nano-Power management solution that ... is specifically designed to efficiently acquire and manage the microwatts (µW) to milliwatts (mW) of power generated from a variety of DC sources like photovoltaic (solar) or thermal electric generators. \[It is\] targeted toward products and systems, such as wireless sensor networks (WSN) which have stringent power and operational demands."*
+> *"The bq25570 device is a highly integrated energy harvesting Nano-Power management solution that ... is specifically designed to efficiently acquire and manage the microwatts (µW) to milliwatts (mW) of power generated from a variety of DC sources like photovoltaic (solar) or thermal electric generators. \[It is\] targeted toward products and systems, such as wireless sensor networks (WSN) which have stringent power and operational demands."* <br/>
 >
 > **Texas Instruments**
 
@@ -137,15 +139,15 @@ In order to do this, the capabilities of the BQ25570 are twofold. First of all, 
 
 >**Note:** if you want to know more about how MPPT works I suggest you have a look at `EHM\Literature\erbay2014.pdf` and `EHM\Literature\kong2012.pdf`.
 
-More specifically, in this case, the integrated MPPT block continuously measures a certain user configurable percentage (i.e., the MPPT percentage) of the energy harvester's open circuit voltage and uses this information to control the switching frequency of the boost converter to match its input impedance to be equal to the harvester's output impedance, thus assuring maximum power transfer. Choosing the MPPT percentage depends heavily on the type of energy harvesting device. If its output impedance is purely resistive, setting the MPPT percentage to 50% (VOC_SAMP = GND) ensures maximum power transfer. However, the capacitive nature of a solar cell's output impedance requires an MPPT percentage closer to 80% (VOC_SAMP = VBAT). For your convenience I've also added the possibility to set a custom MPPT percentage by means of a resistor divider consisting of (R21 + R25) and R26.
+More specifically, in this case, the integrated MPPT block continuously measures a certain user configurable percentage (i.e., the MPPT percentage) of the energy harvester's open circuit voltage and uses this information to control the switching frequency of the boost converter to match its input impedance to be equal to the harvester's output impedance, thus assuring maximum power transfer. Choosing the MPPT percentage depends heavily on the type of energy harvesting device. If its output impedance is purely resistive, setting the MPPT percentage to 50% (VOC_SAMP = GND) ensures maximum power transfer. However, the capacitive nature of a solar cell's output impedance requires an MPPT percentage closer to 80% (VOC_SAMP = VBAT). For your convenience I've also added the possibility to set a custom MPPT percentage by means of a resistor divider consisting of (R20 + R21) and R22.
 
-<img src="https://latex.codecogs.com/gif.latex?MPPT\textsubscript{custom}&space;=&space;\frac{R\textsubscript{21}&space;&plus;&space;R\textsubscript{25}}{R\textsubscript{21}&space;&plus;&space;R\textsubscript{25}&space;&plus;&space;R\textsubscript{26}}&space;\times&space;100\:\%" title="MPPT\textsubscript{custom} = \frac{R\textsubscript{21} + R\textsubscript{25}}{R\textsubscript{21} + R\textsubscript{25} + R\textsubscript{26}} \times 100\:\%" />
+<img src="https://latex.codecogs.com/gif.latex?MPPT\textsubscript{custom}&space;=&space;\frac{R\textsubscript{20}&space;&plus;&space;R\textsubscript{21}}{R\textsubscript{20}&space;&plus;&space;R\textsubscript{21}&space;&plus;&space;R\textsubscript{22}}&space;\times&space;100\:\%" title="MPPT\textsubscript{custom} = \frac{R\textsubscript{20} + R\textsubscript{21}}{R\textsubscript{20} + R\textsubscript{21} + R\textsubscript{22}} \times 100\:\%" />
 
 Switching the MPPT percentage between 50% (VOC_SAMP = GND), 80% (VOC_SAMP = VBAT) or a custom value can be done by setting a jumper (see picture below) to the corresponding position on JP1. The same connector (JP1) also provides the ability to either enable or disable the entire chip by tying the NEN input of the IC to GND or VBAT respectively.
 
 ![jumper](https://i.imgur.com/8uMYhUQ.png)
 
-![mppt conf](https://i.imgur.com/VEiywJR.png)
+![mppt conf](https://i.imgur.com/mdYtRoc.png)
 
 That being said, certain requirements need to be met before the main boost charger (with the aforementioned impedance matching capabilities) is operational. More specifically, when VSTOR < VSTOR_CHGEN (= 1.8V) the IC operates in cold-start mode. The cold-start circuit is essentially an unregulated, hysteretic boost converter with lower efficiency compared to the main boost charger. None of the other features function during cold start operation.
 
@@ -161,11 +163,11 @@ The overvoltage threshold when battery voltage is decreasing is given by VBAT_OV
 
 The charger allows the user to set a programmable voltage independent of the overvoltage and undervoltage settings to indicate whether the VSTOR voltage (and therefore the VBAT voltage when the PFET between the two pins is turned on) is at an acceptable level. When the battery voltage is decreasing the threshold is set by:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{10}}{R\textsubscript{6}})" title="V\textsubscript{BAT, OK} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{10}}{R\textsubscript{6}})" />
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{10}}{R\textsubscript{8}})" title="V\textsubscript{BAT, OK} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{10}}{R\textsubscript{8}})" />
 
 When the battery voltage is increasing, the threshold is set by:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK&space;(HYST)}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{9}&space;&plus;&space;R\textsubscript{10}}{R\textsubscript{6}})" title="V\textsubscript{BAT, OK (HYST)} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{9} + R\textsubscript{10}}{R\textsubscript{6}})" />
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{BAT,&space;OK&space;(HYST)}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(1&space;&plus;&space;\frac{R\textsubscript{9}&space;&plus;&space;R\textsubscript{10}}{R\textsubscript{8}})" title="V\textsubscript{BAT, OK (HYST)} = V\textsubscript{BIAS} \times (1 + \frac{R\textsubscript{9} + R\textsubscript{10}}{R\textsubscript{8}})" />
 
 The logic high level of this signal (i.e., the VBAT_OK output) is equal to the VSTOR voltage and the logic low level is GND. Figure 21 taken from `EHM\Datasheets\bq25570.pdf` shows the relative position of the various threshold voltages discussed so far.
 
@@ -175,9 +177,9 @@ Anyway, apart from boosting the voltage of an energy harvester, the BQ25570 also
 
 <img src="https://latex.codecogs.com/gif.latex?V\textsubscript{OUT}&space;=&space;V\textsubscript{BIAS}&space;\times&space;(\frac{R\textsubscript{12}&space;&plus;&space;R\textsubscript{13}}{R\textsubscript{13}})" title="V\textsubscript{OUT} = V\textsubscript{BIAS} \times (\frac{R\textsubscript{12} + R\textsubscript{13}}{R\textsubscript{13}})" />
 
-Connector JP1 allows you to configure the behaviour of the buck converter output. According to the BQ25570 datasheet (`EHM\Datasheets\bq25570.pdf`), if you tie VOUT_EN to VSTOR, the buck converter is disabled when the voltage on VSTOR drops below the VBAT_UV condition. The buck converter continues to operate in pass (100% duty cycle) mode, passing the input voltage to the output, as long as VSTOR is greater than VBAT_UV and less than VOUT. However, it fails to make clear the true functionality of the VOUT_EN input. You see, when reading `EHM\Literature\sluuaa7a.pdf`, it becomes evident that connecting VOUT_EN to VBAT_OK makes it so that the buck converter is turned off when VSTOR < VBAT_OK (when VSTOR is decreasing) or if VSTOR < VBAT_OK_HYST (when VSTOR increases). Connecting VOUT_EN to GND turns off the buck converter entirely.
+Connector JP2 allows you to configure the behaviour of the buck converter output. According to the BQ25570 datasheet (`EHM\Datasheets\bq25570.pdf`), if you tie VOUT_EN to VSTOR, the buck converter is disabled when the voltage on VSTOR drops below the VBAT_UV condition. The buck converter continues to operate in pass (100% duty cycle) mode, passing the input voltage to the output, as long as VSTOR is greater than VBAT_UV and less than VOUT. However, it fails to make clear the true functionality of the VOUT_EN input. You see, when reading `EHM\Literature\sluuaa7a.pdf`, it becomes evident that connecting VOUT_EN to VBAT_OK makes it so that the buck converter is turned off when VSTOR < VBAT_OK (when VSTOR is decreasing) or if VSTOR < VBAT_OK_HYST (when VSTOR increases). Connecting VOUT_EN to GND turns off the buck converter entirely.
 
-![vout conf](https://i.imgur.com/lSgWpPf.png)
+![vout conf](https://i.imgur.com/7DtdHcL.png)
 
 The `EHM\BQ25570_Design_Help_V1_3.xlsx` spreadsheet is a handy tool that calculates a set of resistor values that fits best within the operational constraints provided by you, the user. For your convenience I've provided you with some values that reflect a common scenario wherein a single cel Li-Ion battery or a dual cell NiMH battery are used as a storage element in conjunction with, e.g., a small solar cell (with an output voltage ≤ 3.5V) such as [this](https://www.banggood.com/0_36W-2V-42_548_53mm-Solar-Panel-Epoxy-Board-with-Wire-p-1369156.html?rmmds=search&cur_warehouse=CN) one or [this](https://www.gearbest.com/other-accessories/pp_009728526124.html) one (when space is limited) or [this](https://www.banggood.com/3_5V-250mA-0_8W-Mini-Epoxy-Solar-Panel-Photovoltaic-Panel-p-987778.html?rmmds=search&cur_warehouse=CN) one when device footprint is no issue.
 
@@ -195,7 +197,7 @@ Choosing an appropriately sized solar panel and storage element (most likely a 3
 
 All resistors are E96 series 1% resistors with an 0603 footprint. The following table provides a summary of the proposed configuration and the passive components required:
 
-![tables](https://i.imgur.com/E2y7KCI.png)
+![tables](https://i.imgur.com/Lu9o8z2.png)
 
 I strongly recommend you to read `EHM\Datasheets\bq25570.pdf` for additional design considerations, e.g., regarding the appropriate sizing of several capacitors, etc.
 
@@ -207,33 +209,25 @@ The MAX9934TAUA is an interesting CSA in that it behaves as a current-source wit
 
 <img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA}" />
 
-If you'd use a Successive Approximation Register (SAR) ADC to measure the amplified voltage drop (i.e., VOUT of the CSA) you need to take the following remark (found in `EHM\Datasheet\max9934.pdf`) into consideration:
+Let's say you'd want to use an ADC with a resolution of 10 bits. At this resolution there are <img src="https://latex.codecogs.com/gif.latex?\inline&space;2^{10}-1&space;=&space;1023" title="2^{10}-1 = 1023" /> levels ranging from 0V to the VOUT of the buck converter (2.7V if you used the proposed configuration). The following equation shows how one could calculate the measured voltage given an output value x of the ADC:
 
-> *"Since the MAX9934 is essentially a high-output impedance current-source, its output termination resistor \[<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}" title="R\textsubscript{CSA}" />\] acts like a source impedance \[<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{AIN}" title="R\textsubscript{AIN}" />\] when driving an ADC channel. Most SAR ADCs specify a maximum source resistance to avoid compromising the accuracy of their readings. Choose the output termination resistor such that it is less than that required by the ADC specification. If the output termination resistor is larger than the source resistance specified, the ADC internal sampling capacitor can momentarily load the amplifier output and cause a drop in the voltage reading.*
->
-> *If the output termination resistor is larger than the source resistance specified, consider using a ceramic capacitor from ADC input to GND. This input capacitor supplies momentary charge to the internal ADC sampling capacitor, helping hold VOUT constant during the acquisition period."*
->
-> **Maxim Integrated**
+<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{MEASURED}&space;=&space;\frac{x}{2^{10}-1}&space;\times&space;V\textsubscript{OUT}&space;\approx&space;\frac{x}{1023}&space;\times&space;2.7\:V" title="V\textsubscript{MEASURED} = \frac{x}{2^{10}-1} \times V\textsubscript{OUT} \approx \frac{x}{1023} \times 2.7\:V" />
 
-Let's say you'd want to use an ADC with a resolution of 12 bits. At this resolution there are <img src="https://latex.codecogs.com/gif.latex?\inline&space;2^{12}-1&space;=&space;4095" title="2^{12}-1 = 4095" /> levels ranging from 0V to the VOUT of the buck converter (2.7V if you used the proposed configuration). The following equation shows how one could calculate the measured voltage given an output value x of the ADC:
+In our case, the smallest measurable voltage delta (by the ADC) equals <img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{2.7\:V}{1023}&space;\approx&space;2.64\:mV" title="\frac{2.7\:V}{1023} \approx 2.64\:mV" />. Now, assume we want to measure the current through the input shunt resistor with a resolution of 200µA, then the smallest possible voltage gain may be obtained from the following equation:
 
-<img src="https://latex.codecogs.com/gif.latex?V\textsubscript{MEASURED}&space;=&space;\frac{x}{2^{12}-1}&space;\times&space;V\textsubscript{OUT}&space;\approx&space;\frac{x}{4095}&space;\times&space;2.7\:V" title="V\textsubscript{MEASURED} = \frac{x}{2^{12}-1} \times V\textsubscript{OUT} \approx \frac{x}{4095} \times 2.7\:V" />
-
-In our case, the smallest measurable voltage delta (by the ADC) equals <img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{2.7\:V}{4095}&space;\approx&space;659\:\mu{V}" title="\frac{2.7\:V}{4095} \approx 659\:\mu{V}" />. Now, assume we want to measure the current through the shunt resistor with a resolution of 50µA, then the smallest possible voltage gain may be obtained from the following equation:
-
-<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V,&space;Min}&space;=&space;\frac{659\:\mu{V}}{R\textsubscript{SHUNT}&space;\times&space;50\:\mu{A}}" title="A\textsubscript{V, Min} = \frac{659\:\mu{V}}{R\textsubscript{SHUNT} \times 50\:\mu{A}}" />
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V,&space;Min}&space;=&space;\frac{2.64\:mV}{R\textsubscript{SHUNT}&space;\times&space;200\:\mu{A}}" title="A\textsubscript{V, Min} = \frac{2.64\:mV}{R\textsubscript{SHUNT} \times 200\:\mu{A}}" />
 
 However since the ADC input only ranges to VOUT of the buck converter, there's also a maximum possible voltage gain. Let's say the maximum input current of the boost charger equals 200mA (which is well within the specs stated in `EHM\Datasheets\bq25570.pdf`), then the following equation puts an upper limit to the voltage gain:
 
 <img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V,&space;Max}&space;=&space;\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;200\:mA}" title="A\textsubscript{V, Max} = \frac{2.7\:V}{R\textsubscript{SHUNT} \times 200\:mA}" />
 
->**Note:** you could easily calculate that in fact, the shunt resistor is not the limiting factor when it comes to resolution. In all cases <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V,&space;Max}&space;\geq&space;A\textsubscript{V,&space;Min}" title="A\textsubscript{V, Max} \geq A\textsubscript{V, Min}" /> must hold true. By assuming the resolution is unknown this comes down to:
+>**Note:** you could easily calculate that in fact, the shunt resistor is not the limiting factor when it comes to resolution. In all cases <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V,&space;Max}&space;\geq&space;A\textsubscript{V,&space;Min}" title="A\textsubscript{V, Max} \geq A\textsubscript{V, Min}" /> must hold true. By assuming the resolution is unknown this comes down to: <br/>
 >
-> <img src="https://latex.codecogs.com/gif.latex?\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;200\:mA}&space;\geq&space;\frac{659\:\mu{V}}{R\textsubscript{SHUNT}&space;\times&space;x}" title="\frac{2.7\:V}{R\textsubscript{SHUNT} \times 200\:mA} \geq \frac{659\:\mu{V}}{R\textsubscript{SHUNT} \times x}" />
+> <img src="https://latex.codecogs.com/gif.latex?\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;200\:mA}&space;\geq&space;\frac{2.64\:mV}{R\textsubscript{SHUNT}&space;\times&space;x}" title="\frac{2.7\:V}{R\textsubscript{SHUNT} \times 200\:mA} \geq \frac{2.64\:mV}{R\textsubscript{SHUNT} \times x}" /> <br/>
 >
-> <img src="https://latex.codecogs.com/gif.latex?x&space;\geq&space;48.8\:\mu{A}" title="x \geq 48.8\:\mu{A}" />
+> <img src="https://latex.codecogs.com/gif.latex?x&space;\geq&space;196\:\mu{A}" title="x \geq 196\:\mu{A}" />
 
-A trade-off now presents itself. The larger the shunt resistance, the lower the voltage gain and the less influence small (tolerance) deviations have on the measurement. However, a larger shunt resistor also equates to more power loss. Let's say that a shunt resistor of 50mΩ does the trick. Assuming the measurement resolution equals 50µA, the voltage gain must be somewhere in the range of <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}&space;\in&space;[263.7,&space;270]" title="A\textsubscript{V} \in [263.7, 270]" />. The corresponding output termination resistor (<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;=&space;R\textsubscript{AIN}" title="R\textsubscript{CSA} = R\textsubscript{AIN}" />) can then be calculated as follows:
+A trade-off now presents itself. The larger the shunt resistance, the lower the voltage gain and the less influence small (tolerance) deviations have on the measurement. However, a larger shunt resistor also equates to more power loss. Let's say that a shunt resistor of 50mΩ does the trick. Assuming the measurement resolution equals 200µA, the voltage gain must be somewhere in the range of <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}&space;\in&space;[263.9,&space;270]" title="A\textsubscript{V} \in [263.9, 270]" />. The corresponding output termination resistor (<img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;=&space;R\textsubscript{AIN}" title="R\textsubscript{CSA} = R\textsubscript{AIN}" />) can then be calculated as follows:
 
 <img src="https://latex.codecogs.com/gif.latex?R\textsubscript{CSA}&space;=&space;\frac{A\textsubscript{V}}{g\textsubscript{m}}" title="R\textsubscript{CSA} = \frac{A\textsubscript{V}}{g\textsubscript{m}}" />
 
@@ -249,25 +243,49 @@ The output shunt resistor employs the same principles. However, according to `EH
 
 Again, in all cases <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V,&space;Max}&space;\geq&space;A\textsubscript{V,&space;Min}" title="A\textsubscript{V, Max} \geq A\textsubscript{V, Min}" /> must hold true. By assuming the resolution to be an unknown variable x this comes down to:
 
-<img src="https://latex.codecogs.com/gif.latex?\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;110\:mA}&space;\geq&space;\frac{659\:\mu{V}}{R\textsubscript{SHUNT}&space;\times&space;x}" title="\frac{2.7\:V}{R\textsubscript{SHUNT} \times 110\:mA} \geq \frac{659\:\mu{V}}{R\textsubscript{SHUNT} \times x}" />
+<img src="https://latex.codecogs.com/gif.latex?\frac{2.7\:V}{R\textsubscript{SHUNT}&space;\times&space;110\:mA}&space;\geq&space;\frac{2.64\:mV}{R\textsubscript{SHUNT}&space;\times&space;x}" title="\frac{2.7\:V}{R\textsubscript{SHUNT} \times 110\:mA} \geq \frac{2.64\:mV}{R\textsubscript{SHUNT} \times x}" /> <br/>
 
-<img src="https://latex.codecogs.com/gif.latex?x&space;\geq&space;26.9\:\mu{A}" title="x \geq 26.9\:\mu{A}" />
+<img src="https://latex.codecogs.com/gif.latex?x&space;\geq&space;108\:\mu{A}" title="x \geq 108\:\mu{A}" />
 
-Let's say a resolution of 30µA is adequate for our purposes and a shunt resistor of 100mΩ does the trick. Then, the voltage gain must be somewhere in the range of <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}&space;\in&space;[219.8,&space;245.5]" title="A\textsubscript{V} \in [219.8, 245.5]" />. Thus <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;\in&space;[8.8,&space;9.8]\:k\Omega" title="R\textsubscript{CSA} \in [8.8, 9.8]\:k\Omega" />. I strongly encourage the use of a 9.31kΩ 0.1% 0603 resistor like the one found in `EHM\Datasheets\era-3aeb9311v.pdf`. This offering from Panasonic is extremely precise. In that case the voltage gain equates to:
+Let's say a resolution of 110µA is adequate for our purposes and a shunt resistor of 100mΩ does the trick. Then, the voltage gain must be somewhere in the range of <img src="https://latex.codecogs.com/gif.latex?\inline&space;A\textsubscript{V}&space;\in&space;[239.9,&space;245.5]" title="A\textsubscript{V} \in [239.9, 245.5]" />. Thus <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{CSA}&space;\in&space;[9.6,&space;9.8]\:k\Omega" title="R\textsubscript{CSA} \in [9.6, 9.8]\:k\Omega" />. I strongly encourage the use of a 9.76kΩ 0.1% 0603 resistor like the one found in `EHM\Datasheets\era-3aeb9761v.pdf`. This offering from Panasonic is extremely precise. In that case the voltage gain equates to:
 
-<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}&space;=&space;232.75" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA} = 232.75" />
+<img src="https://latex.codecogs.com/gif.latex?A\textsubscript{V}&space;=&space;g\textsubscript{m}&space;\times&space;R\textsubscript{CSA}&space;=&space;244" title="A\textsubscript{V} = g\textsubscript{m} \times R\textsubscript{CSA} = 244" />
 
 >**Note:** due to footprint requirements, the only possible shunt resistors are specified in `EHM\Datasheet\y14870rxxx00b9r.pdf`. For example, in the above case, you'd need to order the Y14870R10000B9R and Y14870R05000B9R variants.
 
-### Voltage Buffers
+For your convenience I've added a spreadsheet in `EHM\CSA_help.xlsx` that combines all these calculations. This allows you to properly configure your current sense amplifiers based on the precision of your ADC (expressed as N bits) as well as the transconductance of the CSA and the output voltage (i.e., the positive rail of the ADC) of the bq25570 buck converter output. For example (see image below), with a 12 bit ADC one could increase the current measurement resolution significantly, at the cost of increased power consumption inherent to a more precise ADC that is. 
 
-The input resistance and capacitance of an ADC input are typically chosen to accomodate most common scenarios. However, when dealing with particularly small currents and voltages it is common to buffer these inputs for all sorts of reasons. I went with the `EHM\Datasheets\max9620.pdf` op-amps because they provide unity gain stability up to capacitive loads of 400pF. This is important because the input of (SAR) ADCs tends to be capacitive. Larger capacitive loads may be supported by adding a resistor in series with the buffer output as explained in `EHM\Literature\capacitive_loading.pdf`.
+![csa help](https://i.imgur.com/MFmoLVy.png)
 
-Because the battery and input voltage may be greater than the buffer and ADC supply voltage, I've added the possibility to divide the buffer input voltages by means of a resistor divider. It is advisable to go with large resistance values so as to minimize power losses. Something like the 10MΩ 0.5% 0603 resistors from `EHM\Datasheets\crcw060310m0dheap.pdf` are an exellent choice.
+### Voltage Buffer
 
->**Note:** in future releases the buffers shall be replaced by an active low-pass filter with unity gain in order to combat aliasing.
+The input resistance and capacitance of an ADC input are typically chosen to accomodate most common scenarios. However, when dealing with particularly small currents and voltages it is common to buffer these inputs for all sorts of reasons. Moreover, it is considered good practice to filter out spurious high frequency compoments at the ADC inputs because otherwise they might be replicated in the frequency spectrum after sampling and distort your measurements (think Shannon-Nyquist theorem). According to the principles laid out in `EHM\Literature\tidu390.pdf` and the information obtained from `EHM\Datasheets\ads7041.pdf`, a buffer-filter combination consisting of an `EHM\Datasheets\opa314.pdf` op-amp and low pass RC filter with <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{FLT}&space;=&space;200\:\Omega" title="R\textsubscript{FLT} = 200\:\Omega" /> and <img src="https://latex.codecogs.com/gif.latex?\inline&space;C\textsubscript{FLT}&space;=&space;1.5\:nF" title="C\textsubscript{FLT} = 1.5\:nF" /> was chosen.
+
+>**Note:** both `EHM\Literature\tidu390.pdf` and `EHM\Datasheets\ads7041.pdf` stress the importance of using an NOG type ceramic capacitor for <img src="https://latex.codecogs.com/gif.latex?\inline&space;C\textsubscript{FLT}" title="C\textsubscript{FLT}" /> over a common XR7 type capacitor since these may yield spurious frequency harmonics due to the fact that their actual capacitance value is typically temperature dependent.
+
+>**Note:** since <img src="https://latex.codecogs.com/gif.latex?\inline&space;f\textsubscript{-3dB}&space;\approx&space;500\:kHz" title="f\textsubscript{-3dB} \approx 500\:kHz" />, the sampling rate should be at least 1 MSPS in order to comply with the Shannon-Nyquist sampling theorem, and ideally even higher since no analog filter is infinitely steep.
+
+All signals that are to be sampled are multiplexed onto a single line just before the buffer-filter input with a `EHM\Datasheets\dg2034e.pdf` low rds-on 4 channel MUX. Since the input impedance of the buffer is very high, the additional resistance introduced by the MUX shouldn't result in significant attenuation of the signals. The following thruth table lists which input (denoted with S) is switched to the output according to the logical signal level on the A0 and A1 inputs.
+
+![truth table](https://i.imgur.com/ozGiQg0.png)
+
+When properly configured (by means of the appropriate solder bridges) S1 is connected to the (divided) input signal <img src="https://latex.codecogs.com/gif.latex?\inline&space;V\textsubscript{IN}" title="V\textsubscript{IN}" /> of the bq25570 boost charger, i.e., the positive terminal of connector J2. In similar fashion, S2 is connected to the (divided) positive output of the connected storage element <img src="https://latex.codecogs.com/gif.latex?\inline&space;V\textsubscript{BAT}" title="V\textsubscript{BAT}" /> while S3 is connected to the output of the CSA measuring the bq25570 buck converter output current and S4 is connected to the output of the CSA measuring the bq25570 boost charger input current. The following image shows the location of connector J7, which contains the A0 and A1 inputs. 
+
+![mux inputs](https://i.imgur.com/L7wDl58.png)
+
+Because the battery and input voltage may be greater than the MUX, buffer and ADC supply voltage, I've added the possibility to divide the corresponding MUX input voltages by means of a resistor divider. It is advisable to go with large resistance values so as to minimize power losses. Something like the 10MΩ 0.5% 0603 resistors from `EHM\Datasheets\crcw060310m0dheap.pdf` are an exellent choice.
 
 ### Power Delivery
+
+Coming soon
+
+### ADC
+
+Coming soon
+
+### Solder Bridges
+
+Coming soon
 
 ## License
 This project and all original material included with it are released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
