@@ -19,6 +19,8 @@ An energy harvester with advanced monitoring capabilities.
     - [Current Sense Amplifiers](#current-sense-amplifiers)
     - [Voltage Buffers](#voltage-buffers)
     - [Power Delivery](#power-delivery)
+    - [ADC](#adc)
+    - [Solder Bridges](#solder-bridges)
   - [License](#license)
 
 <!-- /TOC -->
@@ -251,13 +253,37 @@ Let's say a resolution of 110µA is adequate for our purposes and a shunt resist
 
 >**Note:** due to footprint requirements, the only possible shunt resistors are specified in `EHM\Datasheet\y14870rxxx00b9r.pdf`. For example, in the above case, you'd need to order the Y14870R10000B9R and Y14870R05000B9R variants.
 
+For your convenience I've added a spreadsheet in `EHM\CSA_help.xlsx` that combines all these calculations. This allows you to properly configure your current sense amplifiers based on the precision of your ADC (expressed as N bits) as well as the transconductance of the CSA and the output voltage (i.e., the positive rail of the ADC) of the bq25570 buck converter output. For example (see image below), with a 12 bit ADC one could increase the current measurement resolution significantly, at the cost of increased power consumption inherent to a more precise ADC that is. 
+
+![csa help](https://i.imgur.com/MFmoLVy.png)
+
 ### Voltage Buffer
 
-The input resistance and capacitance of an ADC input are typically chosen to accomodate most common scenarios. However, when dealing with particularly small currents and voltages it is common to buffer these inputs for all sorts of reasons. I went with the `EHM\Datasheets\opa314.pdf` op-amp.
+The input resistance and capacitance of an ADC input are typically chosen to accomodate most common scenarios. However, when dealing with particularly small currents and voltages it is common to buffer these inputs for all sorts of reasons. Moreover, it is considered good practice to filter out spurious high frequency compoments at the ADC inputs because otherwise they might be replicated in the frequency spectrum after sampling and distort your measurements (think Shannon-Nyquist theorem). According to the principles laid out in `EHM\Literature\tidu390.pdf` and the information obtained from `EHM\Datasheets\ads7041.pdf`, a buffer-filter combination consisting of an `EHM\Datasheets\opa314.pdf` op-amp and low pass RC filter with <img src="https://latex.codecogs.com/gif.latex?\inline&space;R\textsubscript{FLT}&space;=&space;200\:\Omega" title="R\textsubscript{FLT} = 200\:\Omega" /> and <img src="https://latex.codecogs.com/gif.latex?\inline&space;C\textsubscript{FLT}&space;=&space;1.5\:nF" title="C\textsubscript{FLT} = 1.5\:nF" /> was chosen.
 
-Because the battery and input voltage may be greater than the buffer and ADC supply voltage, I've added the possibility to divide the buffer input voltages by means of a resistor divider. It is advisable to go with large resistance values so as to minimize power losses. Something like the 10MΩ 0.5% 0603 resistors from `EHM\Datasheets\crcw060310m0dheap.pdf` are an exellent choice.
+>**Note:** since <img src="https://latex.codecogs.com/gif.latex?\inline&space;f\textsubscript{-3dB}&space;\approx&space;500\:kHz" title="f\textsubscript{-3dB} \approx 500\:kHz" />, the sampling rate should be at least 1 MSPS in order to comply with the Shannon-Nyquist sampling theorem, and ideally even higher since no analog filter is infinitely steep.
+
+All signals that are to be sampled are multiplexed onto a single line just before the buffer-filter input with a `EHM\Datasheets\dg2034e.pdf` low rds-on 4 channel MUX. Since the input impedance of the buffer is very high, the additional resistance introduced by the MUX shouldn't result in significant attenuation of the signals. The following thruth table lists which input (denoted with S) is switched to the output according to the logical signal level on the A0 and A1 inputs.
+
+![truth table](https://i.imgur.com/ozGiQg0.png)
+
+When properly configured (by means of the appropriate solder bridges) S1 is connected to the (divided) input signal <img src="https://latex.codecogs.com/gif.latex?\inline&space;V\textsubscript{IN}" title="V\textsubscript{IN}" /> of the bq25570 boost charger, i.e., the positive terminal of connector J2. In similar fashion, S2 is connected to the (divided) positive output of the connected storage element <img src="https://latex.codecogs.com/gif.latex?\inline&space;V\textsubscript{BAT}" title="V\textsubscript{BAT}" /> while S3 is connected to the output of the CSA measuring the bq25570 buck converter output current and S4 is connected to the output of the CSA measuring the bq25570 boost charger input current. The following image shows the location of connector J7, which contains the A0 and A1 inputs. 
+
+![mux inputs](https://i.imgur.com/L7wDl58.png)
+
+Because the battery and input voltage may be greater than the MUX, buffer and ADC supply voltage, I've added the possibility to divide the corresponding MUX input voltages by means of a resistor divider. It is advisable to go with large resistance values so as to minimize power losses. Something like the 10MΩ 0.5% 0603 resistors from `EHM\Datasheets\crcw060310m0dheap.pdf` are an exellent choice.
 
 ### Power Delivery
+
+Coming soon
+
+### ADC
+
+Coming soon
+
+### Solder Bridges
+
+Coming soon
 
 ## License
 This project and all original material included with it are released under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
